@@ -2,9 +2,15 @@ package za.co.dvt.android.showcase.presentation.listapps;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -30,7 +36,15 @@ public class AppAdapter extends RecyclerView.Adapter<AppViewHolder> {
     public void onBindViewHolder(AppViewHolder holder, int position) {
         AppModel item = items.get(position);
         holder.textViewAppName.setText(item.name());
+        holder.textViewDescription.setText(item.shortDescription());
+        if (!TextUtils.isEmpty(item.iconUrl())) {
+            Glide.with(context).using(new FirebaseImageLoader()).load(getStorageRef(item.iconUrl()))
+                    .into(holder.imageViewAppIcon);
+        }
+    }
 
+    private StorageReference getStorageRef(final String iconUrl) {
+        return FirebaseStorage.getInstance().getReference(iconUrl);
     }
 
     @Override
