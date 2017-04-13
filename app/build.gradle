@@ -31,6 +31,7 @@ dependencies {
     compile('com.firebaseui:firebase-ui:1.2.0') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
+   // compile 'com.github.frangsierra:rx2firebase:1.1.0'
 
     testCompile 'junit:junit:4.12'
 }

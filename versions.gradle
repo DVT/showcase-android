@@ -1,4 +1,4 @@
 ext {
-    googlePlayServices = "10.2.1"
+    googlePlayServices = "10.2.0"
     supportLibraryVersion = "25.1.1"
 }
