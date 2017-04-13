@@ -40,14 +40,11 @@ public class SplashActivity extends AppCompatActivity {
 
         rootView = findViewById(R.id.root_splash);
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-                    signIn();
-                } else {
-                    signedInSuccess();
-                }
+        handler.postDelayed(() -> {
+            if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                signIn();
+            } else {
+                signedInSuccess();
             }
         }, 1000);
 
