@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-cp $BUDDYBUILD_SECURE_FILES/google-services.json app/src/prod/google-services.json
+cp $BUDDYBUILD_SECURE_FILES/google-services.json app/google-services.json
