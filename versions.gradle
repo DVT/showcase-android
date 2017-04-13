@@ -1,0 +1,4 @@
+ext {
+    googlePlayServices = "10.2.1"
+    supportLibraryVersion = "25.1.1"
+}
