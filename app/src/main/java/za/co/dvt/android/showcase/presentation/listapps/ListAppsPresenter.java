@@ -1,6 +1,7 @@
 package za.co.dvt.android.showcase.presentation.listapps;
 
 
+import java.io.IOException;
 import java.util.List;
 
 import io.reactivex.MaybeObserver;
@@ -23,7 +24,18 @@ public class ListAppsPresenter extends BasePresenter<ListAppsContract.View> impl
 
     @Override
     public void loadApps() {
-        appRepository.getListApps().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        checkViewAttached();
+        appRepository.getListApps()
+                .doOnSubscribe(
+                        disposable -> {
+                            getView().showLoadingIndicator();
+                        })
+                .doOnSuccess(
+                        appModels -> getView().hideLoadingIndicator())
+                .doOnError(
+                        throwable -> getView().hideLoadingIndicator())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new MaybeObserver<List<AppModel>>() {
                     @Override
                     public void onSubscribe(final Disposable d) {
@@ -33,12 +45,21 @@ public class ListAppsPresenter extends BasePresenter<ListAppsContract.View> impl
                     @Override
                     public void onSuccess(final List<AppModel> appModels) {
                         Timber.d("onSuccess:" + appModels.toString());
+                        if (appModels.isEmpty()) {
+                            getView().showNoApps();
+                            return;
+                        }
                         getView().showApps(appModels);
                     }
 
                     @Override
                     public void onError(final Throwable e) {
                         Timber.e("onError:", e);
+                        if (e instanceof IOException) {
+                            getView().showNoInternetError();
+                        } else {
+                            getView().showGenericError();
+                        }
                     }
 
                     @Override

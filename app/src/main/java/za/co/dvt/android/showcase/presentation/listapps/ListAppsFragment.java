@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,10 +28,11 @@ import za.co.dvt.android.showcase.repository.impl.FirebaseAppRepository;
 
 public class ListAppsFragment extends Fragment implements ListAppsContract.View {
 
-    ListAppsContract.Presenter listAppsPresenter;
-    RecyclerView recyclerView;
+    private ListAppsContract.Presenter listAppsPresenter;
+    private RecyclerView recyclerView;
     private AppAdapter recyclerViewAdapter;
-
+    private ProgressBar progressBar;
+    private TextView errorTextView;
 
     @Nullable
     @Override
@@ -37,9 +40,22 @@ public class ListAppsFragment extends Fragment implements ListAppsContract.View 
                              @Nullable final Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_list_apps, container, false);
         setupRecyclerView(v);
-        setupPresenter();
         setupToolbar(v);
+        setupErrorViews(v);
+        setupPresenter();
+
         return v;
+    }
+
+    private void setupErrorViews(View v) {
+        progressBar = (ProgressBar) v.findViewById(R.id.progress_bar);
+        errorTextView = (TextView) v.findViewById(R.id.text_view_error_msg);
+    }
+
+    @Override
+    public void onDestroyView() {
+        listAppsPresenter.detachView();
+        super.onDestroyView();
     }
 
     private void setupToolbar(View v) {
@@ -67,17 +83,38 @@ public class ListAppsFragment extends Fragment implements ListAppsContract.View 
 
     @Override
     public void showApps(final List<AppModel> appModelList) {
+        recyclerView.setVisibility(View.VISIBLE);
         recyclerViewAdapter.setItems(appModelList);
     }
 
     @Override
     public void showNoInternetError() {
+        showError(getString(R.string.load_apps_no_internet));
+    }
 
+    private void showError(String error) {
+        errorTextView.setVisibility(View.VISIBLE);
+        errorTextView.setText(error);
     }
 
     @Override
     public void showGenericError() {
+        showError(getString(R.string.load_apps_generic_error));
+    }
 
+    @Override
+    public void showLoadingIndicator() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoadingIndicator() {
+        progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showNoApps() {
+        showError(getString(R.string.load_apps_no_apps));
     }
 
     public static ListAppsFragment newInstance() {

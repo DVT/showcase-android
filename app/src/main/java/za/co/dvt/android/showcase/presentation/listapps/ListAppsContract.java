@@ -16,6 +16,12 @@ public interface ListAppsContract {
         void showNoInternetError();
 
         void showGenericError();
+
+        void showLoadingIndicator();
+
+        void hideLoadingIndicator();
+
+        void showNoApps();
     }
 
     interface Presenter extends MvpPresenter<View> {

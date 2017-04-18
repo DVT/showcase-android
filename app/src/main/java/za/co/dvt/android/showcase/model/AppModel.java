@@ -39,6 +39,10 @@ public abstract class AppModel {
         return dataSnapshot.getValue(AutoValue_AppModel.FirebaseValue.class).toAutoValue();
     }
 
+    public static AppModel create(String name, String shortDescription, boolean enabled, String iconUrl, String functionality, String technologyUsed, String client) {
+        return new AutoValue_AppModel(name, shortDescription, enabled, iconUrl, functionality, technologyUsed, client);
+    }
+
     public Object toFirebaseValue() {
         return new AutoValue_AppModel.FirebaseValue(this);
     }
