@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import za.co.dvt.android.showcase.R;
-import za.co.dvt.android.showcase.presentation.MainActivity;
+import za.co.dvt.android.showcase.presentation.MainNavigationActivity;
 
 /**
  * @author rebeccafranks
@@ -69,7 +69,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void signedInSuccess() {
-        startActivity(MainActivity.createIntent(this));
+        startActivity(MainNavigationActivity.createIntent(this));
         finish();
     }
 

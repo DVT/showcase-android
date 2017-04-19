@@ -9,4 +9,8 @@
     <string name="load_apps_generic_error">There was an error loading</string>
     <string name="load_apps_no_internet">No internet connection.</string>
     <string name="load_apps_no_apps">No apps found.</string>
+    <string name="title_activity_main_navigation">MainNavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_about">About</string>
+    <string name="title_contact">Contact</string>
 </resources>

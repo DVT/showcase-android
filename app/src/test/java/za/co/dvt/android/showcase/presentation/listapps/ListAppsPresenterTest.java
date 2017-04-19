@@ -1,4 +1,4 @@
-package za.co.dvt.android.showcase.presentation;
+package za.co.dvt.android.showcase.presentation.listapps;
 
 
 import org.junit.Before;
@@ -13,8 +13,6 @@ import java.util.List;
 
 import io.reactivex.Maybe;
 import za.co.dvt.android.showcase.model.AppModel;
-import za.co.dvt.android.showcase.presentation.listapps.ListAppsContract;
-import za.co.dvt.android.showcase.presentation.listapps.ListAppsPresenter;
 import za.co.dvt.android.showcase.repository.AppRepository;
 import za.co.dvt.android.showcase.utils.FakeDataGenerator;
 import za.co.dvt.android.showcase.utils.RxSchedulersOverrideRule;
