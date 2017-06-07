@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="za.co.dvt.android.showcase.presentation.MainNavigationActivity">
+    tools:context="za.co.dvt.android.showcase.ui.MainNavigationActivity">
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

@@ -7,6 +7,6 @@ package za.co.dvt.android.showcase.model
  */
 
 data class AppModel(var name: String, var shortDescription: String,
-                    var enabled: Boolean, var iconUrl: String,
-                    var functionality: String, var technologyUsed: String,
+                    var enabled: Boolean, var iconUrl: String = "",
+                    var functionality: String = "", var technologyUsed: String = "",
                     var client: String)

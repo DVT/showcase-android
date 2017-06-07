@@ -1,4 +1,4 @@
-package za.co.dvt.android.showcase.presentation.listapps;
+package za.co.dvt.android.showcase.ui.listapps;
 
 
 import org.junit.Before;
