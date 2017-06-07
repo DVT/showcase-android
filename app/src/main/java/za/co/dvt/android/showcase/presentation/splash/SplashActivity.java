@@ -8,17 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.ErrorCodes;
-import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.ResultCodes;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import za.co.dvt.android.showcase.R;
 import za.co.dvt.android.showcase.presentation.MainNavigationActivity;
@@ -41,27 +31,28 @@ public class SplashActivity extends AppCompatActivity {
         rootView = findViewById(R.id.root_splash);
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+         /*   if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                 signIn();
-            } else {
-                signedInSuccess();
-            }
+            } else {*/
+            signedInSuccess();
+            // }
         }, 1000);
 
     }
 
     public void signIn() {
-        startActivityForResult(
+     /*   startActivityForResult(
                 AuthUI.getInstance().createSignInIntentBuilder().setTheme(R.style.AppTheme).setLogo(R.drawable.dvt_logo)
                         .setProviders(getSelectedProviders()).setIsSmartLockEnabled(false)
                         .setAllowNewEmailAccounts(true).build(), RC_SIGN_IN);
+ */
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
-            handleSignInResponse(resultCode, data);
+            //       handleSignInResponse(resultCode, data);
             return;
         }
 
@@ -73,7 +64,7 @@ public class SplashActivity extends AppCompatActivity {
         finish();
     }
 
-    @MainThread
+   /* @MainThread
     private void handleSignInResponse(int resultCode, Intent data) {
         IdpResponse response = IdpResponse.fromResultIntent(data);
         Log.d(TAG, "IdpResponse:" + response);
@@ -105,15 +96,15 @@ public class SplashActivity extends AppCompatActivity {
 
         showSnackbar(R.string.unknown_sign_in_response);
     }
-
-    @MainThread
+*/
+   /* @MainThread
     private List<AuthUI.IdpConfig> getSelectedProviders() {
         List<AuthUI.IdpConfig> selectedProviders = new ArrayList<>();
 
         selectedProviders.add(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build());
         selectedProviders.add(new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build());
         return selectedProviders;
-    }
+    }*/
 
 
     @MainThread

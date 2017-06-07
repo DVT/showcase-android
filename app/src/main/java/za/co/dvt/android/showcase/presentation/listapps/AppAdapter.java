@@ -7,11 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
 import java.util.List;
 
 import za.co.dvt.android.showcase.R;
@@ -35,17 +30,17 @@ public class AppAdapter extends RecyclerView.Adapter<AppViewHolder> {
     @Override
     public void onBindViewHolder(AppViewHolder holder, int position) {
         AppModel item = items.get(position);
-        holder.textViewAppName.setText(item.name());
-        holder.textViewDescription.setText(item.shortDescription());
-        if (!TextUtils.isEmpty(item.iconUrl())) {
-            Glide.with(context).using(new FirebaseImageLoader()).load(getStorageRef(item.iconUrl()))
-                    .into(holder.imageViewAppIcon);
+        holder.textViewAppName.setText(item.getName());
+        holder.textViewDescription.setText(item.getShortDescription());
+        if (!TextUtils.isEmpty(item.getIconUrl())) {
+          /*  Glide.with(context).using(new FirebaseImageLoader()).load(getStorageRef(item.getIconUrl()))
+                    .into(holder.imageViewAppIcon);*/
         }
     }
 
-    private StorageReference getStorageRef(final String iconUrl) {
+ /*   private StorageReference getStorageRef(final String iconUrl) {
         return FirebaseStorage.getInstance().getReference(iconUrl);
-    }
+    }*/
 
     @Override
     public int getItemCount() {

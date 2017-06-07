@@ -4,7 +4,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-import durdinapps.rxfirebase2.RxFirebaseDatabase;
 import io.reactivex.Maybe;
 import za.co.dvt.android.showcase.model.AppModel;
 import za.co.dvt.android.showcase.repository.AppRepository;
@@ -24,8 +23,33 @@ public class FirebaseAppRepository implements AppRepository {
 
     @Override
     public Maybe<List<AppModel>> getListApps() {
-        return RxFirebaseDatabase
-                .observeSingleValueEvent(firebaseDatabase.getReference().child("apps"), AppModel::createList);
+        return Maybe.empty();
+       /* return firebaseDatabase.getReference().child("apps").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
     }
 
 }
