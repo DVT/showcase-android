@@ -44,10 +44,10 @@ class SplashActivity : AppCompatActivity() {
         startActivityForResult(LoginActivity.createIntent(this), RC_SIGN_IN)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
-            handleSignInResponse(resultCode, data);
+            handleSignInResponse(resultCode)
             return
         }
 
@@ -59,7 +59,7 @@ class SplashActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun handleSignInResponse(resultCode: Int, data: Intent) {
+    private fun handleSignInResponse(resultCode: Int) {
         if (resultCode == Activity.RESULT_OK) {
             signedInSuccess()
         } else if (resultCode == Activity.RESULT_CANCELED) {
