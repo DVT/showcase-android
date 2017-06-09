@@ -20,7 +20,10 @@
         <activity
             android:name=".ui.MainNavigationActivity"
             android:label="@string/title_activity_main_navigation"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
