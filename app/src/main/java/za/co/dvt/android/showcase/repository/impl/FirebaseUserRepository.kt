@@ -24,10 +24,10 @@ class FirebaseUserRepository(val firebaseAuth: FirebaseAuth) : UserRepository {
                             loginCallback.onLoggedInSuccess(user)
                         }
                     } else {
-                        Timber.d("signInWithEmail:failure", task.exception)
-                        /* if (task.exception != null) {
-                             loginCallback.onLoginFailed(task.exception)
-                         }*/
+                        task.exception?.let {
+                            Timber.d("signInWithEmail:failure", it)
+                            loginCallback.onLoginFailed(it)
+                        }
                     }
                 })
     }

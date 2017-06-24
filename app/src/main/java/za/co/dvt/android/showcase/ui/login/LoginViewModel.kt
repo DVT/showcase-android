@@ -8,6 +8,7 @@ import android.databinding.ObservableField
 import com.google.firebase.auth.FirebaseUser
 import za.co.dvt.android.showcase.injection.ShowcaseComponent
 import za.co.dvt.android.showcase.repository.UserRepository
+import za.co.dvt.android.showcase.utils.SnackbarMessage
 import javax.inject.Inject
 
 /**
@@ -22,6 +23,7 @@ class LoginViewModel : ViewModel(), ShowcaseComponent.Injectable {
     var password: ObservableField<String> = ObservableField("")
     var loading: ObservableBoolean = ObservableBoolean(false)
     var loggedIn: MutableLiveData<Boolean> = MutableLiveData()
+    val snackbarText = SnackbarMessage()
 
     @Inject
     lateinit var userRepository: UserRepository
@@ -37,6 +39,7 @@ class LoginViewModel : ViewModel(), ShowcaseComponent.Injectable {
 
             override fun onLoginFailed(exception: java.lang.Exception) {
                 loading.set(false)
+                snackbarText.value = exception.message ?: "Generic Error"
             }
         })
     }
