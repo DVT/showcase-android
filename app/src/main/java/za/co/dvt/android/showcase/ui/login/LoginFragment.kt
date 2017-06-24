@@ -58,7 +58,6 @@ class LoginFragment : LifecycleFragment() {
             })
         }
 
-
         loginViewModel.loggedIn.observe(this, Observer<Boolean> {
             if (it != null && it) {
                 activity.setResult(Activity.RESULT_OK)

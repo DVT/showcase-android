@@ -15,8 +15,6 @@ import javax.inject.Inject
 
 class ListAppsViewModel : ViewModel(), ShowcaseComponent.Injectable {
 
-
-
     @Inject
     lateinit var appRepository: AppRepository
 

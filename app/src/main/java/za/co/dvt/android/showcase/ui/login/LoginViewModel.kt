@@ -7,6 +7,7 @@ import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import com.google.firebase.auth.FirebaseUser
 import za.co.dvt.android.showcase.injection.ShowcaseComponent
+import za.co.dvt.android.showcase.repository.TrackingRepository
 import za.co.dvt.android.showcase.repository.UserRepository
 import za.co.dvt.android.showcase.utils.SnackbarMessage
 import javax.inject.Inject
@@ -28,6 +29,9 @@ class LoginViewModel : ViewModel(), ShowcaseComponent.Injectable {
     @Inject
     lateinit var userRepository: UserRepository
 
+    @Inject
+    lateinit var trackingRepository: TrackingRepository
+
     fun login(activity: Activity) {
         loading.set(true)
         userRepository.login(emailAddress.get(), password.get(), activity, object : UserRepository.LoginCallback {
@@ -35,11 +39,13 @@ class LoginViewModel : ViewModel(), ShowcaseComponent.Injectable {
             override fun onLoggedInSuccess(user: FirebaseUser) {
                 loggedIn.value = true
                 loading.set(false)
+                trackingRepository.trackUserLoginSuccess()
             }
 
             override fun onLoginFailed(exception: java.lang.Exception) {
                 loading.set(false)
                 snackbarText.value = exception.message ?: "Generic Error"
+                trackingRepository.trackUserLoginFailed(exception.message)
             }
         })
     }
