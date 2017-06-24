@@ -47,11 +47,6 @@ class LoginFragment : LifecycleFragment() {
 
             }
         })
-        loginViewModel.loading.observe(this, Observer<Boolean> {
-            if (it != null) {
-
-            }
-        })
 
         return viewDataBinding.root
     }
