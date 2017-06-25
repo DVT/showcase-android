@@ -13,7 +13,7 @@ import za.co.riggaroo.datecountdown.injection.ApplicationModule
 
 class DvtShowcaseApplication : Application() {
 
-    open val showcaseComponent: ShowcaseComponent = DaggerShowcaseComponent.builder()
+     val showcaseComponent: ShowcaseComponent = DaggerShowcaseComponent.builder()
             .applicationModule(ApplicationModule(this))
             .showcaseModule(ShowcaseModule())
             .build()

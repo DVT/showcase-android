@@ -41,7 +41,7 @@ class ContactUsFragment : Fragment() {
         val recyclerView = view.findViewById(R.id.recycler_view_offices) as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        adapter = OfficeAdapter(listOf(), context)
+        adapter = OfficeAdapter(listOf())
         recyclerView.adapter = adapter
 
     }

@@ -1,6 +1,5 @@
 package za.co.dvt.android.showcase.ui.contact
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import za.co.dvt.android.showcase.model.Office
  * @author rebeccafranks
  * @since 2017/06/25.
  */
-class OfficeAdapter(private var items: List<Office>, private val context: Context) : RecyclerView.Adapter<OfficeViewHolder>() {
+class OfficeAdapter(private var items: List<Office>) : RecyclerView.Adapter<OfficeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfficeViewHolder {
         val itemBinding = ListItemOfficeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
