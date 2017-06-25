@@ -7,9 +7,11 @@ import com.google.firebase.database.FirebaseDatabase
 import dagger.Module
 import dagger.Provides
 import za.co.dvt.android.showcase.repository.AppRepository
+import za.co.dvt.android.showcase.repository.OfficesRepository
 import za.co.dvt.android.showcase.repository.TrackingRepository
 import za.co.dvt.android.showcase.repository.UserRepository
 import za.co.dvt.android.showcase.repository.impl.FirebaseAppRepository
+import za.co.dvt.android.showcase.repository.impl.FirebaseOfficesRepository
 import za.co.dvt.android.showcase.repository.impl.FirebaseTrackingRepository
 import za.co.dvt.android.showcase.repository.impl.FirebaseUserRepository
 import javax.inject.Singleton
@@ -25,6 +27,10 @@ class ShowcaseModule {
     @Provides
     @Singleton
     fun providesAppRepository(): AppRepository = FirebaseAppRepository(FirebaseDatabase.getInstance())
+
+    @Provides
+    @Singleton
+    fun providesOfficesRepository(): OfficesRepository = FirebaseOfficesRepository(FirebaseDatabase.getInstance())
 
     @Provides
     @Singleton
