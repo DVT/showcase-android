@@ -1,7 +1,9 @@
 package za.co.dvt.android.showcase.ui.contact
 
 import android.arch.lifecycle.ViewModel
+import io.reactivex.Maybe
 import za.co.dvt.android.showcase.injection.ShowcaseComponent
+import za.co.dvt.android.showcase.model.Office
 import za.co.dvt.android.showcase.repository.OfficesRepository
 import javax.inject.Inject
 
@@ -19,5 +21,6 @@ class ContactUsViewModel : ViewModel(), ShowcaseComponent.Injectable {
     @Inject
     lateinit var officesRepository: OfficesRepository
 
+    fun getOffices(): Maybe<List<Office>> = officesRepository.getOffices()
 
 }

@@ -12,9 +12,12 @@ import za.co.dvt.android.showcase.repository.OfficesRepository
 class FirebaseOfficesRepository(val firebaseDatabase: FirebaseDatabase) : OfficesRepository {
 
     override fun getOffices(): Maybe<List<Office>> {
-        return Maybe.just(listOf(Office("Johannesburg", "+2742524", "info@dvt.com", 24.05, -25.2, "Address"),
+        return Maybe.just(listOf(Office("Johannesburg", "+2742524", "info@dvt.com", 28.03149899999994, -26.122743, "Ground Floor, Victoria Gate South,Hyde Lane Office Park, Hyde Park Lane, Hydepark, Johannesburg, 2196"),
                 Office(
-                        "Johannesburg", "+2742524", "info@dvt.com", 24.05, -25.2, "Address"
+                        "Cape Town", "+2742524", "info@dvt.com", 24.05, -25.2, "Address"
+                ),
+                Office(
+                        "Durban", "+2742524", "info@dvt.com", 24.05, -25.2, "Address "
                 )
 
         ))

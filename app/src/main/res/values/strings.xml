@@ -17,4 +17,7 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="login_generic_error">There was an error trying to login. Please try again later.</string>
+    <string name="navigate">NAVIGATE</string>
+    <string name="call">CALL</string>
+    <string name="email">EMAIL</string>
 </resources>
