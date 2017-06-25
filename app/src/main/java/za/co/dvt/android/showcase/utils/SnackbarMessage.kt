@@ -26,10 +26,10 @@ import android.arch.lifecycle.Observer
  *
  * Note that only one observer is going to be notified of changes.
  */
-class SnackbarMessage : SingleLiveEvent<String>() {
+class SnackbarMessage : SingleLiveEvent<String?>() {
 
     fun observe(owner: LifecycleOwner, observer: SnackbarObserver) {
-        super.observe(owner, Observer<String> { t ->
+        super.observe(owner, Observer<String?> { t ->
             if (t == null) {
                 return@Observer
             }
@@ -42,7 +42,7 @@ class SnackbarMessage : SingleLiveEvent<String>() {
          * Called when there is a new message to be shown.
          * @param snackbarMessageResourceId The new message, non-null.
          */
-        fun onNewMessage(snackbarMessage: String)
+        fun onNewMessage(snackbarMessage: String?)
     }
 
 }

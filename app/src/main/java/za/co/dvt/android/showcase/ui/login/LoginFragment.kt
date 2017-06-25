@@ -36,10 +36,24 @@ class LoginFragment : LifecycleFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_login, container, false)
+
+        setupViewBinding(view)
+
+        loginViewModel.loggedIn.observe(this, Observer<Boolean> {
+            if (it != null && it) {
+                activity.setResult(Activity.RESULT_OK)
+                activity.finish()
+
+            }
+        })
+        setupSnackbar()
+        return viewDataBinding.root
+    }
+
+    private fun setupViewBinding(view: View?) {
         loginViewModel = ViewModelProviders
                 .of(this, ShowcaseFactory(activity.application as DvtShowcaseApplication))
                 .get(LoginViewModel::class.java)
-
         view?.let {
             viewDataBinding = FragmentLoginBinding.bind(it)
             viewDataBinding.viewModel = loginViewModel
@@ -57,16 +71,6 @@ class LoginFragment : LifecycleFragment() {
                 false
             })
         }
-
-        loginViewModel.loggedIn.observe(this, Observer<Boolean> {
-            if (it != null && it) {
-                activity.setResult(Activity.RESULT_OK)
-                activity.finish()
-
-            }
-        })
-        setupSnackbar()
-        return viewDataBinding.root
     }
 
     fun closeKeyboard() {
@@ -77,11 +81,12 @@ class LoginFragment : LifecycleFragment() {
     fun setupSnackbar() {
         loginViewModel.snackbarText.observe(this, object : SnackbarMessage.SnackbarObserver {
 
-            override fun onNewMessage(snackbarMessage: String) {
-                view?.snack(snackbarMessage)
+            override fun onNewMessage(snackbarMessage: String?) {
+                view?.snack(snackbarMessage ?: getString(R.string.login_generic_error))
             }
         })
     }
+
 
 }
 

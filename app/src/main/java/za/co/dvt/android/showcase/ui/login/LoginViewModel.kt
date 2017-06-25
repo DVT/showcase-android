@@ -44,7 +44,7 @@ class LoginViewModel : ViewModel(), ShowcaseComponent.Injectable {
 
             override fun onLoginFailed(exception: java.lang.Exception) {
                 loading.set(false)
-                snackbarText.value = exception.message ?: "Generic Error"
+                snackbarText.value = exception.message
                 trackingRepository.trackUserLoginFailed(exception.message)
             }
         })

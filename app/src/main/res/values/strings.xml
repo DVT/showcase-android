@@ -16,4 +16,5 @@
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="login_generic_error">There was an error trying to login. Please try again later.</string>
 </resources>
