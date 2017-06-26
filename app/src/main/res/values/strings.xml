@@ -20,10 +20,13 @@
     <string name="navigate">NAVIGATE</string>
     <string name="call">CALL</string>
     <string name="email">EMAIL</string>
-    <string name="about_dvt_heading">ABOUT DVT</string>
+    <string name="about_heading">ABOUT</string>
     <string name="facebook">Facebook</string>
     <string name="twitter">Twitter</string>
     <string name="website">Website</string>
-    <string name="dvt_about_company">DVT, founded in 1999, has grown to over 600 staff with offices in South Africa (Johannesburg, Centurion, Cape Town and Durban) and the United Kingdom (London). We service more than 100 local and international, medium and large organisations and build long-term partnerships with our clients.</string>
-    <string name="about_dvt_services">SERVICE OFFERING</string>
+    <string name="about_company">DVT or Dynamic Visual Technologies was founded in 1999. It has grown to over 600 staff with offices in South Africa (Johannesburg, Centurion, Cape Town and Durban) and the United Kingdom (London). We service more than 100 local and international, medium and large organisations and build long-term partnerships with our clients.</string>
+    <string name="about_services">SERVICE OFFERING</string>
+    <string name="facebook_page">DVTmedia</string>
+    <string name="twitter_account">DVT_Corporate</string>
+    <string name="website_address">http://dvt.co.za</string>
 </resources>

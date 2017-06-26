@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import za.co.dvt.android.showcase.DvtShowcaseApplication
+import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
 
@@ -23,7 +23,7 @@ class AboutFragment : LifecycleFragment() {
 
 
     fun openTwitter() {
-        val twitterUserName = "DVT_Corporate"
+        val twitterUserName = getString(R.string.twitter_account)
         try {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?screen_name=" + twitterUserName)))
         } catch (e: Exception) {
@@ -33,11 +33,11 @@ class AboutFragment : LifecycleFragment() {
     }
 
     fun openFacebook() {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/DVTmedia")))
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/" + getString(R.string.facebook_page))))
     }
 
     fun openWebsite() {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://dvt.co.za")))
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website_address))))
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -58,7 +58,7 @@ class AboutFragment : LifecycleFragment() {
 
     private fun setupViewModel() {
         aboutViewModel = ViewModelProviders.of(this,
-                ShowcaseFactory(activity.application as DvtShowcaseApplication))
+                ShowcaseFactory(activity.application as ShowcaseApplication))
                 .get(AboutViewModel::class.java)
         aboutViewModel.openWebsite.observe(this, Observer<Void> { openWebsite() })
         aboutViewModel.openFacebook.observe(this, Observer<Void> { openFacebook() })

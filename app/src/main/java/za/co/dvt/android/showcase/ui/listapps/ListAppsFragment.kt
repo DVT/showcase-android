@@ -14,7 +14,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
-import za.co.dvt.android.showcase.DvtShowcaseApplication
+import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
 import za.co.dvt.android.showcase.model.AppModel
@@ -45,7 +45,7 @@ class ListAppsFragment : Fragment() {
 
     private fun setupViewModel() {
         listAppsViewModel = ViewModelProviders.of(this,
-                ShowcaseFactory(activity.application as DvtShowcaseApplication))
+                ShowcaseFactory(activity.application as ShowcaseApplication))
                 .get(ListAppsViewModel::class.java)
         listAppsViewModel.getAppList().subscribe(object : MaybeObserver<List<AppModel>> {
             override fun onSubscribe(d: Disposable?) {
