@@ -14,7 +14,7 @@ interface TrackingRepository {
     fun trackViewListApps()
     fun trackViewAppDetail(appModel: AppModel)
     fun trackViewContactUs()
-    fun trackViewAboutDVT()
+    fun trackViewAboutCompany()
     fun trackUserLoginSuccess()
     fun trackUserLoginFailed(message: String?)
     fun trackOpenWebsite()

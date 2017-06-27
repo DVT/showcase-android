@@ -14,9 +14,10 @@ import za.co.dvt.android.showcase.repository.AppRepository
 
 class FirebaseAppRepository(private val firebaseDatabase: FirebaseDatabase) : AppRepository {
 
-    override val listApps: Maybe<List<AppModel>>
-        get() = Maybe.just(listOf(AppModel("DStv Now", "Watch DStv on the Go!", true, client = "DStv"),
+    override fun listApps(): Maybe<List<AppModel>> {
+        return Maybe.just(listOf(AppModel("DStv Now", "Watch DStv on the Go!", true, client = "DStv"),
                 AppModel("EMF", "Events Management", true, client = "EMF")
         ))
+    }
 
 }

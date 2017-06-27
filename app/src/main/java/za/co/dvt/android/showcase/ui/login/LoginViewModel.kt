@@ -54,4 +54,8 @@ class LoginViewModel : ViewModel(), ShowcaseComponent.Injectable {
         component.inject(this)
     }
 
+    fun initializeScreen() {
+        trackingRepository.trackViewUserLogin()
+    }
+
 }

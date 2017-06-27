@@ -12,6 +12,7 @@ import za.co.dvt.android.showcase.repository.TrackingRepository
  */
 
 class FirebaseTrackingRepository(val firebaseAnalytics: FirebaseAnalytics) : TrackingRepository {
+
     override fun trackOpenWebsite() {
         firebaseAnalytics.logEvent("view_website", null)
     }
@@ -25,23 +26,26 @@ class FirebaseTrackingRepository(val firebaseAnalytics: FirebaseAnalytics) : Tra
     }
 
     override fun trackViewUserLogin() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        firebaseAnalytics.logEvent("view_login", null)
     }
 
     override fun trackViewListApps() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        firebaseAnalytics.logEvent("view_list_apps", null)
     }
 
     override fun trackViewAppDetail(appModel: AppModel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val bundle = Bundle()
+        bundle.putString("app_name", appModel.name)
+        bundle.putString("client", appModel.client)
+        firebaseAnalytics.logEvent("view_app", bundle)
     }
 
     override fun trackViewContactUs() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        firebaseAnalytics.logEvent("view_contact_us", null)
     }
 
-    override fun trackViewAboutDVT() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun trackViewAboutCompany() {
+        firebaseAnalytics.logEvent("view_about_company", null)
     }
 
     override fun trackUserLoginSuccess() {
@@ -49,7 +53,7 @@ class FirebaseTrackingRepository(val firebaseAnalytics: FirebaseAnalytics) : Tra
     }
 
     override fun trackUserLoginFailed(message: String?) {
-        var bundle = Bundle()
+        val bundle = Bundle()
         bundle.putString("error_msg", message)
         firebaseAnalytics.logEvent("login_failed", bundle)
     }

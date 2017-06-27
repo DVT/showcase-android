@@ -54,6 +54,7 @@ class LoginFragment : LifecycleFragment() {
         loginViewModel = ViewModelProviders
                 .of(this, ShowcaseFactory(activity.application as ShowcaseApplication))
                 .get(LoginViewModel::class.java)
+        loginViewModel.initializeScreen()
         view?.let {
             viewDataBinding = FragmentLoginBinding.bind(it)
             viewDataBinding.viewModel = loginViewModel

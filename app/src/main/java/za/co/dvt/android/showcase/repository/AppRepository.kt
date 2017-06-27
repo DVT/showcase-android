@@ -10,6 +10,6 @@ import za.co.dvt.android.showcase.model.AppModel
  */
 interface AppRepository {
 
-    val listApps: Maybe<List<AppModel>>
+    fun listApps(): Maybe<List<AppModel>>
 
 }
