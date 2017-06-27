@@ -11,7 +11,7 @@ import za.co.dvt.android.showcase.injection.ShowcaseModule
 import za.co.riggaroo.datecountdown.injection.ApplicationModule
 
 
-class DvtShowcaseApplication : Application() {
+class ShowcaseApplication : Application() {
 
      val showcaseComponent: ShowcaseComponent = DaggerShowcaseComponent.builder()
             .applicationModule(ApplicationModule(this))

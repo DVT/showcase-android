@@ -11,15 +11,14 @@ import za.co.dvt.android.showcase.model.AppModel
 interface TrackingRepository {
 
     fun trackViewUserLogin()
-
     fun trackViewListApps()
-
     fun trackViewAppDetail(appModel: AppModel)
-
     fun trackViewContactUs()
-
     fun trackViewAboutDVT()
     fun trackUserLoginSuccess()
     fun trackUserLoginFailed(message: String?)
+    fun trackOpenWebsite()
+    fun trackOpenTwitter()
+    fun trackOpenFacebook()
 
 }

@@ -3,7 +3,7 @@ package za.co.dvt.android.showcase.injection
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import timber.log.Timber
-import za.co.dvt.android.showcase.DvtShowcaseApplication
+import za.co.dvt.android.showcase.ShowcaseApplication
 
 /**
  * @author rebeccafranks
@@ -11,7 +11,7 @@ import za.co.dvt.android.showcase.DvtShowcaseApplication
  * @since 2017/06/07.
  */
 
-class ShowcaseFactory(private val application: DvtShowcaseApplication) : ViewModelProvider.NewInstanceFactory() {
+class ShowcaseFactory(private val application: ShowcaseApplication) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         val t = super.create(modelClass)

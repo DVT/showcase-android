@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import za.co.dvt.android.showcase.DvtShowcaseApplication
+import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
 import za.co.dvt.android.showcase.model.Office
@@ -28,7 +28,7 @@ class ContactUsFragment : Fragment() {
 
     private fun setupViewModel() {
         contactUsViewModel = ViewModelProviders.of(this,
-                ShowcaseFactory(activity.application as DvtShowcaseApplication))
+                ShowcaseFactory(activity.application as ShowcaseApplication))
                 .get(ContactUsViewModel::class.java)
         contactUsViewModel.getOffices().subscribe { offices: List<Office>? ->
             offices?.let {

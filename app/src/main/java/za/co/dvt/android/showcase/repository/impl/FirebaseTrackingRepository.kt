@@ -12,6 +12,17 @@ import za.co.dvt.android.showcase.repository.TrackingRepository
  */
 
 class FirebaseTrackingRepository(val firebaseAnalytics: FirebaseAnalytics) : TrackingRepository {
+    override fun trackOpenWebsite() {
+        firebaseAnalytics.logEvent("view_website", null)
+    }
+
+    override fun trackOpenTwitter() {
+        firebaseAnalytics.logEvent("view_twitter", null)
+    }
+
+    override fun trackOpenFacebook() {
+        firebaseAnalytics.logEvent("view_facebook", null)
+    }
 
     override fun trackViewUserLogin() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

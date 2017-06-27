@@ -15,7 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import snack
-import za.co.dvt.android.showcase.DvtShowcaseApplication
+import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.databinding.FragmentLoginBinding
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
@@ -52,7 +52,7 @@ class LoginFragment : LifecycleFragment() {
 
     private fun setupViewBinding(view: View?) {
         loginViewModel = ViewModelProviders
-                .of(this, ShowcaseFactory(activity.application as DvtShowcaseApplication))
+                .of(this, ShowcaseFactory(activity.application as ShowcaseApplication))
                 .get(LoginViewModel::class.java)
         view?.let {
             viewDataBinding = FragmentLoginBinding.bind(it)
