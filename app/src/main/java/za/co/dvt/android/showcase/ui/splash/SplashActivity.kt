@@ -79,4 +79,5 @@ class SplashActivity : AppCompatActivity() {
         private val RC_SIGN_IN = 1
     }
 
+
 }
