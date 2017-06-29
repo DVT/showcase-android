@@ -13,12 +13,12 @@ import javax.inject.Inject
  * @since 2017/06/07.
  */
 
-class ListAppsViewModel : ViewModel(), ShowcaseComponent.Injectable {
+open class ListAppsViewModel : ViewModel(), ShowcaseComponent.Injectable {
 
     @Inject
     lateinit var appRepository: AppRepository
 
-    fun getAppList(): Maybe<List<AppModel>> = appRepository.listApps
+    fun getAppList(): Maybe<List<AppModel>> = appRepository.listApps()
 
 
     override fun inject(component: ShowcaseComponent) {

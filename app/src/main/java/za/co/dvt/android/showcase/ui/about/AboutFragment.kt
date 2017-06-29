@@ -11,8 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.R
+import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
 
 
@@ -40,17 +40,16 @@ class AboutFragment : LifecycleFragment() {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website_address))))
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_about, container, false)
-        view?.let {
-            val twitterButton = it.findViewById(R.id.buttonTwitter) as Button
-            val facebookButton = it.findViewById(R.id.buttonFacebook) as Button
-            val websiteButton = it.findViewById(R.id.buttonWebsite) as Button
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_about, container, false)
 
-            twitterButton.setOnClickListener { aboutViewModel.openTwitter() }
-            facebookButton.setOnClickListener { aboutViewModel.openFacebook() }
-            websiteButton.setOnClickListener { aboutViewModel.openWebsite() }
-        }
+        val twitterButton = view.findViewById(R.id.buttonTwitter) as Button
+        val facebookButton = view.findViewById(R.id.buttonFacebook) as Button
+        val websiteButton = view.findViewById(R.id.buttonWebsite) as Button
+
+        twitterButton.setOnClickListener { aboutViewModel.openTwitter() }
+        facebookButton.setOnClickListener { aboutViewModel.openFacebook() }
+        websiteButton.setOnClickListener { aboutViewModel.openWebsite() }
 
         setupViewModel()
         return view

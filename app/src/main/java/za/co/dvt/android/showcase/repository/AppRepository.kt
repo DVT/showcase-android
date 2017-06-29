@@ -12,4 +12,6 @@ interface AppRepository {
 
     fun listApps(): Maybe<List<AppModel>>
 
+    fun getAppById(appId: String): Maybe<AppModel>
+
 }

@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.R
+import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
 import za.co.dvt.android.showcase.model.Office
 
@@ -19,10 +19,11 @@ class ContactUsFragment : Fragment() {
     lateinit var contactUsViewModel: ContactUsViewModel
     lateinit var adapter: OfficeAdapter
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_contact, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_contact, container, false)
         setupRecyclerView(view)
         setupViewModel()
+
         return view
     }
 

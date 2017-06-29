@@ -1,5 +1,7 @@
 package za.co.dvt.android.showcase.ui.listapps
 
+import za.co.dvt.android.showcase.model.AppModel
+
 /**
  * @author rebeccafranks
  * *
@@ -7,5 +9,5 @@ package za.co.dvt.android.showcase.ui.listapps
  */
 
 interface ListAppsNavigator {
-    fun onAppClick(appId: String)
+    fun onAppClick(app: AppModel)
 }

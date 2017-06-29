@@ -1,6 +1,7 @@
 package za.co.dvt.android.showcase.ui.listapps
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
@@ -14,10 +15,11 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
-import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.R
+import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
 import za.co.dvt.android.showcase.model.AppModel
+import za.co.dvt.android.showcase.ui.viewapp.ViewAppActivity
 
 /**
  * @author rebeccafranks
@@ -25,7 +27,8 @@ import za.co.dvt.android.showcase.model.AppModel
  * @since 2017/04/13
  */
 
-class ListAppsFragment : Fragment() {
+class ListAppsFragment : Fragment(), ListAppsNavigator {
+
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewAdapter: AppAdapter
@@ -33,9 +36,9 @@ class ListAppsFragment : Fragment() {
     private lateinit var errorTextView: TextView
     private lateinit var listAppsViewModel: ListAppsViewModel
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val v = inflater!!.inflate(R.layout.fragment_list_apps, container, false)
+        val v = inflater.inflate(R.layout.fragment_list_apps, container, false)
         setupRecyclerView(v)
         setupToolbar(v)
         setupErrorViews(v)
@@ -79,7 +82,7 @@ class ListAppsFragment : Fragment() {
         recyclerView = v.findViewById(R.id.recycler_view_apps) as RecyclerView
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
-        recyclerViewAdapter = AppAdapter(ArrayList(), context)
+        recyclerViewAdapter = AppAdapter(ArrayList(), context, this)
         recyclerView.adapter = recyclerViewAdapter
         val dividerItemDecoration = DividerItemDecoration(recyclerView.context,
                 layoutManager.orientation)
@@ -114,6 +117,13 @@ class ListAppsFragment : Fragment() {
 
     fun showNoApps() {
         showError(getString(R.string.load_apps_no_apps))
+    }
+
+    override fun onAppClick(app: AppModel) {
+        val bundle = Bundle()
+        bundle.putString(ViewAppActivity.ARG_APP_ID, app.id)
+
+        startActivity(Intent(activity, ViewAppActivity::class.java), bundle)
     }
 
     companion object {
