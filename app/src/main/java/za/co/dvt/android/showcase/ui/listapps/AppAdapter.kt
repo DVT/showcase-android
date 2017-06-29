@@ -5,9 +5,12 @@ import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
+import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.model.AppModel
+import za.co.dvt.android.showcase.utils.FirebaseImageLoader
 
 class AppAdapter(private var items: List<AppModel>, private val context: Context, private val taskNavigator: ListAppsNavigator) : RecyclerView.Adapter<AppViewHolder>() {
 
@@ -26,14 +29,14 @@ class AppAdapter(private var items: List<AppModel>, private val context: Context
             taskNavigator.onAppClick(app)
         }
         if (!TextUtils.isEmpty(iconUrl)) {
-            /*  Glide.with(context).using(new FirebaseImageLoader()).load(getStorageRef(item.getIconUrl()))
-                    .into(holder.imageViewAppIcon);*/
+            Glide.with(context).using(FirebaseImageLoader()).load(getStorageRef(iconUrl))
+                    .into(holder.imageViewAppIcon)
         }
     }
 
-    /*   private StorageReference getStorageRef(final String iconUrl) {
-        return FirebaseStorage.getInstance().getReference(iconUrl);
-    }*/
+    private fun getStorageRef(iconUrl: String): StorageReference? {
+        return FirebaseStorage.getInstance().getReference(iconUrl)
+    }
 
     override fun getItemCount(): Int {
         return items.size

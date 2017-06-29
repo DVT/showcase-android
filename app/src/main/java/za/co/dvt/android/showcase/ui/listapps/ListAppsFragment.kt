@@ -15,6 +15,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
+import timber.log.Timber
 import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
@@ -28,7 +29,6 @@ import za.co.dvt.android.showcase.ui.viewapp.ViewAppActivity
  */
 
 class ListAppsFragment : Fragment(), ListAppsNavigator {
-
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewAdapter: AppAdapter
@@ -64,6 +64,7 @@ class ListAppsFragment : Fragment(), ListAppsNavigator {
             }
 
             override fun onError(e: Throwable?) {
+                Timber.e("Exception getting apps:", e)
             }
         })
     }

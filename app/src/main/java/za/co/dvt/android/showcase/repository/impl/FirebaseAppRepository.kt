@@ -3,8 +3,11 @@ package za.co.dvt.android.showcase.repository.impl
 import com.google.firebase.database.FirebaseDatabase
 
 import io.reactivex.Maybe
+import za.co.dvt.android.rxjava2firebase.DataSnapshotMapper
+import za.co.dvt.android.rxjava2firebase.RxFirebaseDatabase
 import za.co.dvt.android.showcase.model.AppModel
 import za.co.dvt.android.showcase.repository.AppRepository
+
 
 /**
  * @author rebeccafranks
@@ -19,9 +22,9 @@ class FirebaseAppRepository(private val firebaseDatabase: FirebaseDatabase) : Ap
     }
 
     override fun listApps(): Maybe<List<AppModel>> {
-        return Maybe.just(listOf(AppModel("1", "DStv Now", "Watch DStv on the Go!", true, client = "DStv"),
-                AppModel("2", "EMF", "Events Management", true, client = "EMF")
-        ))
+        return RxFirebaseDatabase.observeSingleValueEvent(firebaseDatabase.getReference("apps"),
+                DataSnapshotMapper.listOf(AppModel::class.java))
+
     }
 
 }

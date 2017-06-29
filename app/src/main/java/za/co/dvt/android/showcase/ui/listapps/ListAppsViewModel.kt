@@ -2,6 +2,8 @@ package za.co.dvt.android.showcase.ui.listapps
 
 import android.arch.lifecycle.ViewModel
 import io.reactivex.Maybe
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import za.co.dvt.android.showcase.injection.ShowcaseComponent
 import za.co.dvt.android.showcase.model.AppModel
 import za.co.dvt.android.showcase.repository.AppRepository
@@ -19,6 +21,8 @@ open class ListAppsViewModel : ViewModel(), ShowcaseComponent.Injectable {
     lateinit var appRepository: AppRepository
 
     fun getAppList(): Maybe<List<AppModel>> = appRepository.listApps()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 
 
     override fun inject(component: ShowcaseComponent) {

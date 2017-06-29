@@ -161,7 +161,8 @@
                             android:text="@string/about_company"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/view" />
+                            app:layout_constraintTop_toTopOf="@+id/view"
+                            android:layout_marginTop="8dp" />
 
                     </android.support.constraint.ConstraintLayout>
                 </android.support.v7.widget.CardView>

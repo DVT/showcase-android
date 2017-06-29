@@ -1,0 +1,37 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation "com.google.firebase:firebase-core:$googlePlayServices"
+    implementation "com.google.firebase:firebase-database:$googlePlayServices"
+    implementation "com.google.firebase:firebase-auth:$googlePlayServices"
+    implementation "com.google.firebase:firebase-storage:$googlePlayServices"
+
+    testImplementation 'junit:junit:4.12'
+}
