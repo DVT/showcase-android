@@ -3,6 +3,7 @@ package za.co.dvt.android.showcase.repository.impl
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 import za.co.dvt.android.showcase.model.AppModel
+import za.co.dvt.android.showcase.model.Office
 import za.co.dvt.android.showcase.repository.TrackingRepository
 
 /**
@@ -12,6 +13,23 @@ import za.co.dvt.android.showcase.repository.TrackingRepository
  */
 
 class FirebaseTrackingRepository(val firebaseAnalytics: FirebaseAnalytics) : TrackingRepository {
+    override fun trackEmailOffice(office: Office) {
+        val bundle = Bundle()
+        bundle.putString("office_name", office.name)
+        firebaseAnalytics.logEvent("click_email_office", bundle)
+    }
+
+    override fun trackCallOffice(office: Office) {
+        val bundle = Bundle()
+        bundle.putString("office_name", office.name)
+        firebaseAnalytics.logEvent("click_call_office", bundle)
+    }
+
+    override fun trackNavigationOffice(office: Office) {
+        val bundle = Bundle()
+        bundle.putString("office_name", office.name)
+        firebaseAnalytics.logEvent("click_navigate_office", bundle)
+    }
 
     override fun trackOpenWebsite() {
         firebaseAnalytics.logEvent("view_website", null)

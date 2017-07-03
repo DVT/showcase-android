@@ -1,6 +1,6 @@
 package za.co.dvt.android.showcase.repository
 
-import io.reactivex.Maybe
+import io.reactivex.Flowable
 import za.co.dvt.android.showcase.model.Office
 
 /**
@@ -8,5 +8,5 @@ import za.co.dvt.android.showcase.model.Office
  * @since 2017/06/25.
  */
 interface OfficesRepository {
-    fun getOffices(): Maybe<List<Office>>
+    fun getOffices(): Flowable<List<Office>>
 }
