@@ -24,18 +24,16 @@ class ViewAppViewModel : ViewModel(), ShowcaseComponent.Injectable {
 
             }
 
-            override fun onError(e: Throwable?) {
+            override fun onError(e: Throwable) {
 
             }
 
-            override fun onSubscribe(d: Disposable?) {
+            override fun onSubscribe(d: Disposable) {
 
             }
 
-            override fun onSuccess(appModel: AppModel?) {
-                appModel?.let {
-                    app = appModel
-                }
+            override fun onSuccess(appModel: AppModel) {
+                app = appModel
             }
 
         })

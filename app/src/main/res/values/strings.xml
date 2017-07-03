@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">DVT Showcase</string>
+    <string name="app_name">Showcase</string>
     <string name="sign_in_cancelled">Sign in cancelled</string>
     <string name="no_internet_connection">No internet connection</string>
     <string name="unknown_error">Unknown error</string>
     <string name="unknown_sign_in_response">Unknown sign in response</string>
     <string name="unknown_response">Unknown response</string>
-    <string name="list_apps_title">DVT Showcase</string>
+    <string name="list_apps_title">Showcase</string>
     <string name="load_apps_generic_error">There was an error loading</string>
     <string name="load_apps_no_internet">No internet connection.</string>
     <string name="load_apps_no_apps">No apps found.</string>
@@ -31,4 +31,5 @@
     <string name="website_address">http://dvt.co.za</string>
     <string name="heading_functionality">Functionality</string>
     <string name="heading_technologies">Technology</string>
+    <string name="email_subject_default">Query from Android App</string>
 </resources>

@@ -51,7 +51,7 @@ class ListAppsFragment : Fragment(), ListAppsNavigator {
                 ShowcaseFactory(activity.application as ShowcaseApplication))
                 .get(ListAppsViewModel::class.java)
         listAppsViewModel.getAppList().subscribe(object : MaybeObserver<List<AppModel>> {
-            override fun onSubscribe(d: Disposable?) {
+            override fun onSubscribe(d: Disposable) {
             }
 
             override fun onSuccess(items: List<AppModel>) {
@@ -63,24 +63,24 @@ class ListAppsFragment : Fragment(), ListAppsNavigator {
 
             }
 
-            override fun onError(e: Throwable?) {
+            override fun onError(e: Throwable) {
                 Timber.e("Exception getting apps:", e)
             }
         })
     }
 
     private fun setupErrorViews(v: View) {
-        progressBar = v.findViewById(R.id.progress_bar) as ProgressBar
-        errorTextView = v.findViewById(R.id.text_view_error_msg) as TextView
+        progressBar = v.findViewById(R.id.progress_bar)
+        errorTextView = v.findViewById(R.id.text_view_error_msg)
     }
 
     private fun setupToolbar(v: View) {
-        val toolbar = v.findViewById(R.id.toolbar) as Toolbar
+        val toolbar = v.findViewById<Toolbar>(R.id.toolbar)
         toolbar.setTitle(R.string.list_apps_title)
     }
 
     private fun setupRecyclerView(v: View) {
-        recyclerView = v.findViewById(R.id.recycler_view_apps) as RecyclerView
+        recyclerView = v.findViewById(R.id.recycler_view_apps)
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
         recyclerViewAdapter = AppAdapter(ArrayList(), context, this)

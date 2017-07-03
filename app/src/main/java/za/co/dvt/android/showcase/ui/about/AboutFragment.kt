@@ -43,9 +43,9 @@ class AboutFragment : LifecycleFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_about, container, false)
 
-        val twitterButton = view.findViewById(R.id.buttonTwitter) as Button
-        val facebookButton = view.findViewById(R.id.buttonFacebook) as Button
-        val websiteButton = view.findViewById(R.id.buttonWebsite) as Button
+        val twitterButton = view.findViewById<Button>(R.id.buttonTwitter)
+        val facebookButton = view.findViewById<Button>(R.id.buttonFacebook)
+        val websiteButton = view.findViewById<Button>(R.id.buttonWebsite)
 
         twitterButton.setOnClickListener { aboutViewModel.openTwitter() }
         facebookButton.setOnClickListener { aboutViewModel.openFacebook() }

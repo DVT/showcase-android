@@ -43,12 +43,14 @@ class ContactUsFragment : LifecycleFragment(), OfficeItemNavigator {
 
         contactUsViewModel.openCall.observe(this, Observer<Office> { office ->
             office?.let {
-                startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + office.telephone) ))
+                startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + office.telephone)))
             }
         })
 
         contactUsViewModel.openEmail.observe(this, Observer<Office> { office ->
-
+            office?.let {
+                composeEmail(office.emailAddress, getString(R.string.email_subject_default))
+            }
         })
 
         contactUsViewModel.openNavigate.observe(this, Observer<Office> { office ->
@@ -58,11 +60,21 @@ class ContactUsFragment : LifecycleFragment(), OfficeItemNavigator {
                                 + office.googleMapsPlaceId
                                 + "&destination=" + office.googleMapsName)))
             }
-       })
+        })
+    }
+
+    fun composeEmail(addresses: String, subject: String) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "*/*"
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses)
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject)
+        if (intent.resolveActivity(activity.packageManager) != null) {
+            startActivity(intent)
+        }
     }
 
     private fun setupRecyclerView(view: View) {
-        val recyclerView = view.findViewById(R.id.recycler_view_offices) as RecyclerView
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_offices)
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         adapter = OfficeAdapter(listOf(), this)
