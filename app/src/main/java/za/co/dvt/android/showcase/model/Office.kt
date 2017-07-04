@@ -5,5 +5,9 @@ package za.co.dvt.android.showcase.model
  * @since 2017/06/25.
  */
 
-data class Office(val name: String, val telephone: String, val emailAddress: String, val longitude: Double,
-                  val latitude: Double, val address: String)
+data class Office(val name: String? = null, val telephone: String? = null,
+                  val emailAddress: String? = null, val longitude: Double? = null,
+                  val latitude: Double? = null, val address: String? = null,
+                  val image: String? = null, val googleMapsPlaceId: String? = null,
+                  val googleMapsName: String? = null
+)

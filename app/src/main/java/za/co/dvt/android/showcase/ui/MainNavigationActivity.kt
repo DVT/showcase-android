@@ -41,9 +41,9 @@ class MainNavigationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_navigation)
 
-        frameLayout = findViewById(R.id.fragment_content) as FrameLayout
+        frameLayout = findViewById(R.id.fragment_content)
 
-        val navigation = findViewById(R.id.navigation) as BottomNavigationView
+        val navigation = findViewById<BottomNavigationView>(R.id.navigation)
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         navigation.selectedItemId = R.id.navigation_home
     }
