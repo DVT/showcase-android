@@ -13,9 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
-import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
-import timber.log.Timber
 import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
@@ -46,27 +44,28 @@ class ListAppsFragment : Fragment(), ListAppsNavigator {
         return v
     }
 
+    override fun onStart() {
+        super.onStart()
+        appsListDisposable = listAppsViewModel.getAppList().subscribe { items: List<AppModel>? ->
+            hideLoadingIndicator()
+            items?.let {
+                showApps(items)
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        appsListDisposable.dispose()
+    }
+
+    private lateinit var appsListDisposable: Disposable
+
     private fun setupViewModel() {
         listAppsViewModel = ViewModelProviders.of(this,
                 ShowcaseFactory(activity.application as ShowcaseApplication))
                 .get(ListAppsViewModel::class.java)
-        listAppsViewModel.getAppList().subscribe(object : MaybeObserver<List<AppModel>> {
-            override fun onSubscribe(d: Disposable) {
-            }
 
-            override fun onSuccess(items: List<AppModel>) {
-                hideLoadingIndicator()
-                showApps(items)
-            }
-
-            override fun onComplete() {
-
-            }
-
-            override fun onError(e: Throwable) {
-                Timber.e("Exception getting apps:", e)
-            }
-        })
     }
 
     private fun setupErrorViews(v: View) {

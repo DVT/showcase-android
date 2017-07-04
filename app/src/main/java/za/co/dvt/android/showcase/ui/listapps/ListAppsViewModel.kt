@@ -1,7 +1,7 @@
 package za.co.dvt.android.showcase.ui.listapps
 
 import android.arch.lifecycle.ViewModel
-import io.reactivex.Maybe
+import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import za.co.dvt.android.showcase.injection.ShowcaseComponent
@@ -20,7 +20,7 @@ open class ListAppsViewModel : ViewModel(), ShowcaseComponent.Injectable {
     @Inject
     lateinit var appRepository: AppRepository
 
-    fun getAppList(): Maybe<List<AppModel>> = appRepository.listApps()
+    fun getAppList(): Flowable<List<AppModel>> = appRepository.listApps()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 

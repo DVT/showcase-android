@@ -1,5 +1,6 @@
 package za.co.dvt.android.showcase.repository
 
+import io.reactivex.Flowable
 import io.reactivex.Maybe
 import za.co.dvt.android.showcase.model.AppModel
 
@@ -10,7 +11,7 @@ import za.co.dvt.android.showcase.model.AppModel
  */
 interface AppRepository {
 
-    fun listApps(): Maybe<List<AppModel>>
+    fun listApps(): Flowable<List<AppModel>>
 
     fun getAppById(appId: String): Maybe<AppModel>
 

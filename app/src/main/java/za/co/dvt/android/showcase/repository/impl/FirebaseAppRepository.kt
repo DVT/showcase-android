@@ -1,6 +1,7 @@
 package za.co.dvt.android.showcase.repository.impl
 
 import com.google.firebase.database.FirebaseDatabase
+import io.reactivex.Flowable
 
 import io.reactivex.Maybe
 import za.co.dvt.android.rxjava2firebase.DataSnapshotMapper
@@ -21,8 +22,8 @@ class FirebaseAppRepository(private val firebaseDatabase: FirebaseDatabase) : Ap
         return Maybe.just(AppModel("1", "DStv Now", "Watch DStv on the Go!", true, client = "DStv"))
     }
 
-    override fun listApps(): Maybe<List<AppModel>> {
-        return RxFirebaseDatabase.observeSingleValueEvent(firebaseDatabase.getReference("apps"),
+    override fun listApps(): Flowable<List<AppModel>> {
+        return RxFirebaseDatabase.observeValueEvent(firebaseDatabase.getReference("apps"),
                 DataSnapshotMapper.listOf(AppModel::class.java))
 
     }
