@@ -20,23 +20,22 @@ class AppAdapter(private var items: List<AppModel>, private val context: Context
     }
 
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
-        val (_, name, shortDescription, _, iconUrl) = items[position]
-        holder.textViewAppName.text = name
-        holder.textViewDescription.text = shortDescription
+        val appItem = items[position]
+        holder.textViewAppName.text = appItem.name
+        holder.textViewDescription.text = appItem.shortDescription
         holder.itemView.tag = items[position]
         holder.itemView.setOnClickListener { view ->
             val app = view.tag as AppModel
             taskNavigator.onAppClick(app)
         }
-        if (!TextUtils.isEmpty(iconUrl)) {
-            Glide.with(context).using(FirebaseImageLoader()).load(getStorageRef(iconUrl))
+        val storageRef = appItem.getFullIconUrl()
+        storageRef?.let{
+            Glide.with(context).using(FirebaseImageLoader()).load(storageRef)
                     .into(holder.imageViewAppIcon)
         }
     }
 
-    private fun getStorageRef(iconUrl: String): StorageReference? {
-        return FirebaseStorage.getInstance().getReference(iconUrl)
-    }
+
 
     override fun getItemCount(): Int {
         return items.size

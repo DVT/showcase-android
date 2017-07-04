@@ -49,7 +49,9 @@ class ContactUsFragment : LifecycleFragment(), OfficeItemNavigator {
 
         contactUsViewModel.openEmail.observe(this, Observer<Office> { office ->
             office?.let {
-                composeEmail(office.emailAddress, getString(R.string.email_subject_default))
+                office.emailAddress?.let{
+                    composeEmail(it, getString(R.string.email_subject_default))
+                }
             }
         })
 
