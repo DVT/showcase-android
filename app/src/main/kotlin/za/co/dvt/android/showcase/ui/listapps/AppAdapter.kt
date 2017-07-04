@@ -2,12 +2,9 @@ package za.co.dvt.android.showcase.ui.listapps
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.model.AppModel
 import za.co.dvt.android.showcase.utils.FirebaseImageLoader
@@ -29,12 +26,11 @@ class AppAdapter(private var items: List<AppModel>, private val context: Context
             taskNavigator.onAppClick(app)
         }
         val storageRef = appItem.getFullIconUrl()
-        storageRef?.let{
+        storageRef?.let {
             Glide.with(context).using(FirebaseImageLoader()).load(storageRef)
                     .into(holder.imageViewAppIcon)
         }
     }
-
 
 
     override fun getItemCount(): Int {
