@@ -26,7 +26,7 @@ import za.co.dvt.android.showcase.ui.viewapp.ViewAppActivity
  * @since 2017/04/13
  */
 
-class ListAppsFragment : Fragment(), ListAppsNavigator {
+class ListAppsFragment : Fragment(), AppItemNavigator {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewAdapter: AppAdapter
@@ -41,6 +41,7 @@ class ListAppsFragment : Fragment(), ListAppsNavigator {
         setupToolbar(v)
         setupErrorViews(v)
         setupViewModel()
+        showLoadingIndicator()
         return v
     }
 
@@ -70,7 +71,7 @@ class ListAppsFragment : Fragment(), ListAppsNavigator {
 
     private fun setupErrorViews(v: View) {
         progressBar = v.findViewById(R.id.progress_bar)
-        errorTextView = v.findViewById(R.id.text_view_error_msg)
+        errorTextView = v.findViewById<TextView>(R.id.text_view_error_msg)
     }
 
     private fun setupToolbar(v: View) {
@@ -82,7 +83,7 @@ class ListAppsFragment : Fragment(), ListAppsNavigator {
         recyclerView = v.findViewById(R.id.recycler_view_apps)
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
-        recyclerViewAdapter = AppAdapter(ArrayList(), context, this)
+        recyclerViewAdapter = AppAdapter(ArrayList(), this)
         recyclerView.adapter = recyclerViewAdapter
         val dividerItemDecoration = DividerItemDecoration(recyclerView.context,
                 layoutManager.orientation)

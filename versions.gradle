@@ -1,5 +1,5 @@
 ext {
-    googlePlayServices = "10.2.1"
+    googlePlayServices = "11.0.1"
     supportLibraryVersion = "26.0.0-beta2"
     mockitoVersion = '1.10.19'
     junitVersion = '4.12'
