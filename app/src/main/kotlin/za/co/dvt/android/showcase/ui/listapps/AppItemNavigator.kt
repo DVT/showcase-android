@@ -8,6 +8,6 @@ import za.co.dvt.android.showcase.model.AppModel
  * @since 2017/06/22.
  */
 
-interface ListAppsNavigator {
+interface AppItemNavigator {
     fun onAppClick(app: AppModel)
 }

@@ -16,7 +16,8 @@ import za.co.dvt.android.showcase.utils.FirebaseImageLoader
  * @author rebeccafranks
  * @since 2017/06/25.
  */
-class OfficeAdapter(private var items: List<Office>, private var itemNavigator: OfficeItemNavigator) : RecyclerView.Adapter<OfficeViewHolder>() {
+class OfficeAdapter(private var items: List<Office>,
+                    private var itemNavigator: OfficeItemNavigator) : RecyclerView.Adapter<OfficeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfficeViewHolder {
         val itemBinding = ListItemOfficeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -39,11 +40,5 @@ class OfficeAdapter(private var items: List<Office>, private var itemNavigator: 
     }
 }
 
-@BindingAdapter("imageUrl")
-public fun loadImage(view: ImageView, image: String) {
-    if (!TextUtils.isEmpty(image)) {
-        Glide.with(view.context).using(FirebaseImageLoader()).load(FirebaseStorage.getInstance().getReference(image))
-                .into(view)
-    }
-}
+
 
