@@ -41,6 +41,7 @@ class ListAppsFragment : Fragment(), AppItemNavigator {
         setupToolbar(v)
         setupErrorViews(v)
         setupViewModel()
+        showLoadingIndicator()
         return v
     }
 
