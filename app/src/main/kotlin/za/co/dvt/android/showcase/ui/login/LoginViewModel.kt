@@ -32,9 +32,9 @@ class LoginViewModel : ViewModel(), ShowcaseComponent.Injectable {
     @Inject
     lateinit var trackingRepository: TrackingRepository
 
-    fun login(activity: Activity) {
+    fun login() {
         loading.set(true)
-        userRepository.login(emailAddress.get(), password.get(), activity, object : UserRepository.LoginCallback {
+        userRepository.login(emailAddress.get(), password.get(), object : UserRepository.LoginCallback {
 
             override fun onLoggedInSuccess(user: FirebaseUser) {
                 loggedIn.value = true

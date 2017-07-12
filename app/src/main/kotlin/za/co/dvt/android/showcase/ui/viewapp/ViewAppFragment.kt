@@ -5,9 +5,9 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.database.FirebaseDatabase
 import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.databinding.FragmentAppDetailBinding
@@ -37,9 +37,17 @@ class ViewAppFragment : LifecycleFragment() {
             act.supportActionBar?.let { actionBar ->
                 actionBar.setDisplayHomeAsUpEnabled(true)
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+
             }
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            activity.finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setupViewModel() {
