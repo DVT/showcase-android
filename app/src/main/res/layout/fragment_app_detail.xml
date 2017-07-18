@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="appViewModel"
-            type="za.co.dvt.android.showcase.ui.viewapp.ViewAppViewModel" />
+            name="appModel"
+            type="za.co.dvt.android.showcase.model.AppModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -30,17 +30,13 @@
                 android:background="?attr/colorPrimary"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
-                app:title="@{appViewModel.app.name}"
+                app:title="@{appModel.name}"
                 app:titleTextColor="@color/white" />
         </android.support.design.widget.AppBarLayout>
 
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +52,10 @@
                     android:layout_height="90dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    app:imageUrl="@{appModel.iconUrl}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/ic_launcher" />
+                    tools:src="@mipmap/ic_launcher" />
 
                 <TextView
                     android:id="@+id/textViewAppName"
@@ -67,7 +64,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{appViewModel.app.name}"
+                    android:text="@{appModel.name}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -81,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:text="@{appViewModel.app.shortDescription}"
+                    android:text="@{appModel.shortDescription}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/imageViewAppIcon"
@@ -110,6 +107,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:text="@{appModel.functionality}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -126,6 +124,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/heading_technologies"
+                    android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -139,11 +138,15 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginStart="16dp"
+                    android:text="@{appModel.technologyUsed}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textViewTechnologiesHeading"
-                    tools:text="- Android \n- iOS " />
+                    tools:text="- Android \n- iOS "
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="32dp" />
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/viewPagerAppScreenShots"
@@ -164,6 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
+                    android:text="@{appModel.client}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageViewAppIcon"

@@ -121,10 +121,9 @@ class ListAppsFragment : Fragment(), AppItemNavigator {
     }
 
     override fun onAppClick(app: AppModel) {
-        val bundle = Bundle()
-        bundle.putString(ViewAppActivity.ARG_APP_ID, app.id)
-
-        startActivity(Intent(activity, ViewAppActivity::class.java), bundle)
+        val intent = Intent(activity, ViewAppActivity::class.java)
+        intent.putExtra(ViewAppActivity.ARG_APP_ID, app.id)
+        startActivity(intent)
     }
 
     companion object {

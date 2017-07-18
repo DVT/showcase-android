@@ -22,12 +22,15 @@ class ViewAppFragment : LifecycleFragment() {
 
     lateinit var viewAppViewModel: ViewAppViewModel
 
+    lateinit var viewBinding: FragmentAppDetailBinding
+
+    lateinit var selectedApp: String
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val viewBinding = FragmentAppDetailBinding.inflate(inflater)
+        viewBinding = FragmentAppDetailBinding.inflate(inflater)
+        selectedApp = activity.intent.getStringExtra(ViewAppActivity.ARG_APP_ID) ?: "-KkGVuCHu7FvHdtryKGd"
         setupViewModel()
         setupToolbar(viewBinding)
-        viewBinding.appViewModel = viewAppViewModel
-
         return viewBinding.root
     }
 
@@ -54,7 +57,9 @@ class ViewAppFragment : LifecycleFragment() {
         viewAppViewModel = ViewModelProviders
                 .of(this, ShowcaseFactory(activity.application as ShowcaseApplication))
                 .get(ViewAppViewModel::class.java)
-        viewAppViewModel.loadApp("1")
+        viewAppViewModel.loadApp(selectedApp).subscribe { item ->
+            viewBinding.appModel = item
+        }
     }
 
 }
