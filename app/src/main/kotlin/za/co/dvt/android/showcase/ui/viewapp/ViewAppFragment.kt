@@ -29,6 +29,7 @@ class ViewAppFragment : LifecycleFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewBinding = FragmentAppDetailBinding.inflate(inflater)
         selectedApp = activity.intent.getStringExtra(ViewAppActivity.ARG_APP_ID) ?: "-KkGVuCHu7FvHdtryKGd"
+        setHasOptionsMenu(true)
         setupViewModel()
         setupToolbar(viewBinding)
         return viewBinding.root
