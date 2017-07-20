@@ -32,4 +32,7 @@
     <string name="heading_functionality">Functionality</string>
     <string name="heading_technologies">Technology</string>
     <string name="email_subject_default">Query from Android App</string>
+    <string name="install_app">Install</string>
+    <string name="screenshots_heading">Screenshots</string>
+    <string name="retry">Retry</string>
 </resources>

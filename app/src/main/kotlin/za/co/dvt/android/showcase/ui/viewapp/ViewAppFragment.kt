@@ -4,6 +4,7 @@ import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -24,15 +25,24 @@ class ViewAppFragment : LifecycleFragment() {
 
     lateinit var viewBinding: FragmentAppDetailBinding
 
-    lateinit var selectedApp: String
+    var selectedApp: String? = null
+
+    lateinit var screenshotRecyclerView: RecyclerView
+    lateinit var screenshotAdapter: ScreenshotAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewBinding = FragmentAppDetailBinding.inflate(inflater)
-        selectedApp = activity.intent.getStringExtra(ViewAppActivity.ARG_APP_ID) ?: "-KkGVuCHu7FvHdtryKGd"
+        selectedApp = activity.intent.getStringExtra(ViewAppActivity.ARG_APP_ID)
         setHasOptionsMenu(true)
         setupViewModel()
         setupToolbar(viewBinding)
+        setupScreenshotRecyclerView()
         return viewBinding.root
+    }
+
+    private fun setupScreenshotRecyclerView() {
+        screenshotRecyclerView = viewBinding.recyclerViewAppScreenshots
+        screenshotAdapter = ScreenshotAdapter(ArrayList())
     }
 
     private fun setupToolbar(view: FragmentAppDetailBinding) {
@@ -58,9 +68,19 @@ class ViewAppFragment : LifecycleFragment() {
         viewAppViewModel = ViewModelProviders
                 .of(this, ShowcaseFactory(activity.application as ShowcaseApplication))
                 .get(ViewAppViewModel::class.java)
-        viewAppViewModel.loadApp(selectedApp).subscribe { item ->
-            viewBinding.appModel = item
+        selectedApp?.let { selectedApp ->
+            viewAppViewModel.loadApp(selectedApp).subscribe { item ->
+                viewBinding.appModel = item
+                if (item.screenshots != null) {
+                    screenshotAdapter = ScreenshotAdapter(item.screenshots!!)
+                    screenshotRecyclerView.adapter = screenshotAdapter
+                } else {
+                    screenshotRecyclerView.visibility = View.GONE
+                }
+
+            }
         }
+
     }
 
 }
