@@ -22,22 +22,22 @@ class AboutFragment : LifecycleFragment() {
     lateinit var aboutViewModel: AboutViewModel
 
 
-    fun openTwitter() {
-        val twitterUserName = getString(R.string.twitter_account)
+    fun openTwitter(twitterUserName: String) {
+
         try {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?screen_name=" + twitterUserName)))
         } catch (e: Exception) {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/#!/" + twitterUserName)))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/" + twitterUserName)))
         }
 
     }
 
-    fun openFacebook() {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/" + getString(R.string.facebook_page))))
+    fun openFacebook(facebookUserName: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/" + facebookUserName)))
     }
 
-    fun openWebsite() {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website_address))))
+    fun openWebsite(websiteUrl: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl)))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -59,9 +59,21 @@ class AboutFragment : LifecycleFragment() {
         aboutViewModel = ViewModelProviders.of(this,
                 ShowcaseFactory(activity.application as ShowcaseApplication))
                 .get(AboutViewModel::class.java)
-        aboutViewModel.openWebsite.observe(this, Observer<Void> { openWebsite() })
-        aboutViewModel.openFacebook.observe(this, Observer<Void> { openFacebook() })
-        aboutViewModel.openTwitter.observe(this, Observer<Void> { openTwitter() })
+        aboutViewModel.openWebsite.observe(this, Observer<String> { websiteUrl: String? ->
+            websiteUrl?.let {
+                openWebsite(websiteUrl)
+            }
+        })
+        aboutViewModel.openFacebook.observe(this, Observer<String> { facebookPageName ->
+            facebookPageName?.let {
+                openFacebook(facebookPageName)
+            }
+        })
+        aboutViewModel.openTwitter.observe(this, Observer<String> { twitterName ->
+            twitterName?.let {
+                openTwitter(twitterName)
+            }
+        })
     }
 
     companion object {

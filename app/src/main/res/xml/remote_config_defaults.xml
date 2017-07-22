@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- START xml_defaults -->
+<defaultsMap>
+    <entry>
+        <key>about_company</key>
+        <value>DVT or Dynamic Visual Technologies was founded in 1999. It has grown to over 600 staff with offices in South Africa (Johannesburg, Centurion, Cape Town and Durban) and the United Kingdom (London). We service more than 100 local and international, medium and large organisations and build long-term partnerships with our clients.</value>
+    </entry>
+    <entry>
+        <key>twitter_url</key>
+        <value>DVT_Corporate</value>
+    </entry>
+    <entry>
+        <key>facebook_url</key>
+        <value>DVTmedia</value>
+    </entry>
+    <entry>
+        <key>web_url</key>
+        <value>http://dvt.co.za</value>
+    </entry>
+</defaultsMap>
+    <!-- END xml_defaults -->
