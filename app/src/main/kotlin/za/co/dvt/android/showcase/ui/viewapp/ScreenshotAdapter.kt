@@ -3,6 +3,7 @@ package za.co.dvt.android.showcase.ui.viewapp
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import timber.log.Timber
 import za.co.dvt.android.showcase.databinding.ListItemScreenshotBinding
 
@@ -29,5 +30,6 @@ class ScreenshotAdapter(val screenshots: List<String>) : RecyclerView.Adapter<Sc
         Timber.d("Screenshot Url: $item at $position ")
         holder?.bind(item)
     }
+
 
 }

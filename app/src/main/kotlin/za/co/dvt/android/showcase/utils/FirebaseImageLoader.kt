@@ -18,6 +18,7 @@ import com.google.firebase.storage.StreamDownloadTask
 import java.io.IOException
 import java.io.InputStream
 
+
 /**
  * ModelLoader implementation to download images from FirebaseStorage with Glide.
  *
@@ -40,22 +41,27 @@ class FirebaseImageLoader : StreamModelLoader<StorageReference> {
     }
 
     private inner class FirebaseStorageFetcher internal constructor(private val mRef: StorageReference) : DataFetcher<InputStream> {
-        private lateinit var mStreamTask: StreamDownloadTask
-        private lateinit var mInputStream: InputStream
+        private var mStreamTask: StreamDownloadTask? = null
+        private var mInputStream: InputStream? = null
 
         @Throws(Exception::class)
-        override fun loadData(priority: Priority): InputStream {
+        override fun loadData(priority: Priority): InputStream? {
             mStreamTask = mRef.stream
-            mInputStream = Tasks.await<StreamDownloadTask.TaskSnapshot>(mStreamTask).stream
+            mInputStream = Tasks.await<StreamDownloadTask.TaskSnapshot>(mStreamTask!!).getStream()
 
             return mInputStream
         }
 
         override fun cleanup() {
-            try {
-                mInputStream.close()
-            } catch (e: IOException) {
-                Log.w(TAG, "Could not close stream", e)
+            // Close stream if possible
+            if (mInputStream != null) {
+                try {
+                    mInputStream?.close()
+                    mInputStream = null
+                } catch (e: IOException) {
+                    Log.w(TAG, "Could not close stream", e)
+                }
+
             }
         }
 
@@ -65,8 +71,8 @@ class FirebaseImageLoader : StreamModelLoader<StorageReference> {
 
         override fun cancel() {
             // Cancel task if possible
-            if (mStreamTask.isInProgress) {
-                mStreamTask.cancel()
+            if (mStreamTask != null && mStreamTask?.isInProgress == true) {
+                mStreamTask?.cancel()
             }
         }
     }

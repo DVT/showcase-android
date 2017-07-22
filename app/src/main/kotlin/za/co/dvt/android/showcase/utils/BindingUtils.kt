@@ -16,8 +16,10 @@ import com.google.firebase.storage.FirebaseStorage
 fun loadImage(view: ImageView, image: String?) {
     image?.let {
         if (!TextUtils.isEmpty(image)) {
-            Glide.with(view.context).using(FirebaseImageLoader())
+            Glide.with(view.context)
+                    .using(FirebaseImageLoader())
                     .load(FirebaseStorage.getInstance().getReference(image))
+
                     .into(view)
         }
     }

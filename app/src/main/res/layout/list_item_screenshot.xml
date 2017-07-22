@@ -22,7 +22,7 @@
             android:layout_marginEnd="2dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
-
+            android:adjustViewBounds="true"
             app:imageUrl="@{screenshotUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
