@@ -9,6 +9,10 @@
             name="appModel"
             type="za.co.dvt.android.showcase.model.AppModel" />
 
+        <variable
+            name="appDetailNavigator"
+            type="za.co.dvt.android.showcase.ui.viewapp.AppDetailNavigator" />
+
         <import type="android.view.View" />
     </data>
 
@@ -207,7 +211,6 @@
                     android:layout_marginTop="8dp"
                     android:text="@{appModel.client}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                    android:visibility="@{appModel == null ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintRight_toRightOf="parent"
@@ -222,9 +225,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="8dp"
+                    android:onClick="@{() -> appDetailNavigator.installApp(appModel)}"
                     android:text="@string/install_app"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_view_short_description"
+                    app:visibleGone="@{appModel.androidPackageName != null }"
                     tools:layout_editor_absoluteX="288dp" />
 
 

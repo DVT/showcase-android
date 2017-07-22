@@ -13,21 +13,32 @@ import za.co.dvt.android.showcase.repository.TrackingRepository
  */
 
 class FirebaseTrackingRepository(val firebaseAnalytics: FirebaseAnalytics) : TrackingRepository {
+    private val APP_NAME_PARAM = "app_name"
+    private val CLIENT_PARAM = "client"
+    private val OFFICE_NAME_PARAM = "office_name"
+    private val ERROR_MSG_PARAM = "error_msg"
+
+    override fun trackInstallAppClicked(app: AppModel) {
+        val bundle = Bundle()
+        bundle.putString(APP_NAME_PARAM, app.name)
+        firebaseAnalytics.logEvent("click_app_install", bundle)
+    }
+
     override fun trackEmailOffice(office: Office) {
         val bundle = Bundle()
-        bundle.putString("office_name", office.name)
+        bundle.putString(OFFICE_NAME_PARAM, office.name)
         firebaseAnalytics.logEvent("click_email_office", bundle)
     }
 
     override fun trackCallOffice(office: Office) {
         val bundle = Bundle()
-        bundle.putString("office_name", office.name)
+        bundle.putString(OFFICE_NAME_PARAM, office.name)
         firebaseAnalytics.logEvent("click_call_office", bundle)
     }
 
     override fun trackNavigationOffice(office: Office) {
         val bundle = Bundle()
-        bundle.putString("office_name", office.name)
+        bundle.putString(OFFICE_NAME_PARAM, office.name)
         firebaseAnalytics.logEvent("click_navigate_office", bundle)
     }
 
@@ -53,8 +64,8 @@ class FirebaseTrackingRepository(val firebaseAnalytics: FirebaseAnalytics) : Tra
 
     override fun trackViewAppDetail(appModel: AppModel) {
         val bundle = Bundle()
-        bundle.putString("app_name", appModel.name)
-        bundle.putString("client", appModel.client)
+        bundle.putString(APP_NAME_PARAM, appModel.name)
+        bundle.putString(CLIENT_PARAM, appModel.client)
         firebaseAnalytics.logEvent("view_app", bundle)
     }
 
@@ -72,7 +83,7 @@ class FirebaseTrackingRepository(val firebaseAnalytics: FirebaseAnalytics) : Tra
 
     override fun trackUserLoginFailed(message: String?) {
         val bundle = Bundle()
-        bundle.putString("error_msg", message)
+        bundle.putString(ERROR_MSG_PARAM, message)
         firebaseAnalytics.logEvent("login_failed", bundle)
     }
 

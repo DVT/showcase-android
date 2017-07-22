@@ -1,7 +1,11 @@
 package za.co.dvt.android.showcase.ui.viewapp
 
 import android.arch.lifecycle.LifecycleFragment
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
+import android.content.Intent.ACTION_VIEW
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
@@ -13,13 +17,16 @@ import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.databinding.FragmentAppDetailBinding
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
+import za.co.dvt.android.showcase.model.AppModel
+
 
 /**
  * @author rebeccafranks
  * *
  * @since 2017/04/13
  */
-class ViewAppFragment : LifecycleFragment() {
+class ViewAppFragment : LifecycleFragment(), AppDetailNavigator {
+
 
     lateinit var viewAppViewModel: ViewAppViewModel
 
@@ -37,7 +44,28 @@ class ViewAppFragment : LifecycleFragment() {
         setupViewModel()
         setupToolbar(viewBinding)
         setupScreenshotRecyclerView()
+        setupAppStoreObservable()
         return viewBinding.root
+    }
+
+    fun setupAppStoreObservable() {
+        viewAppViewModel.openAppStore.observe(this, Observer<AppModel> { appModel: AppModel? ->
+            appModel?.let {
+                openPlayStoreLink(appModel.androidPackageName)
+            }
+        })
+    }
+
+    private fun openPlayStoreLink(androidPackageName: String?) {
+        try {
+            val appStoreIntent = Intent(ACTION_VIEW, Uri.parse("market://details?id=" + androidPackageName))
+            appStoreIntent.`package` = "com.android.vending"
+
+            startActivity(appStoreIntent)
+        } catch (exception: android.content.ActivityNotFoundException) {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + androidPackageName)))
+        }
+
     }
 
     private fun setupScreenshotRecyclerView() {
@@ -68,6 +96,7 @@ class ViewAppFragment : LifecycleFragment() {
         viewAppViewModel = ViewModelProviders
                 .of(this, ShowcaseFactory(activity.application as ShowcaseApplication))
                 .get(ViewAppViewModel::class.java)
+        viewBinding.appDetailNavigator = this
         selectedApp?.let { selectedApp ->
             viewAppViewModel.loadApp(selectedApp).subscribe { item ->
                 viewBinding.appModel = item
@@ -83,4 +112,7 @@ class ViewAppFragment : LifecycleFragment() {
 
     }
 
+    override fun installApp(app: AppModel) {
+        viewAppViewModel.installApp(app)
+    }
 }

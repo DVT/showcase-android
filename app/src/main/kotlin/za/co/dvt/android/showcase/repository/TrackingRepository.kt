@@ -24,5 +24,6 @@ interface TrackingRepository {
     fun trackEmailOffice(office: Office)
     fun trackCallOffice(office: Office)
     fun trackNavigationOffice(office: Office)
+    fun trackInstallAppClicked(app: AppModel)
 
 }
