@@ -1,6 +1,7 @@
 package za.co.dvt.android.showcase.ui.about
 
 import android.arch.lifecycle.ViewModel
+import io.reactivex.Observable
 import za.co.dvt.android.showcase.injection.ShowcaseComponent
 import za.co.dvt.android.showcase.repository.RemoteConfigurationRepository
 import za.co.dvt.android.showcase.repository.TrackingRepository
@@ -25,8 +26,11 @@ class AboutViewModel : ViewModel(), ShowcaseComponent.Injectable {
 
     val openTwitter: SingleLiveEvent<String> = SingleLiveEvent()
 
+    lateinit var aboutCompany: Observable<String>
+
     override fun inject(component: ShowcaseComponent) {
         component.inject(this)
+        aboutCompany = remoteConfigRepository.getAboutCompany()
     }
 
     fun openWebsite() {

@@ -1,6 +1,7 @@
 package za.co.dvt.android.showcase.repository.impl
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import io.reactivex.Observable
 import za.co.dvt.android.showcase.repository.RemoteConfigurationRepository
 
 /**
@@ -25,8 +26,8 @@ class FirebaseRemoteConfigRepository(val firebaseRemoteConfig: FirebaseRemoteCon
         return firebaseRemoteConfig.getString(FACEBOOK_URL)
     }
 
-    override fun getAboutCompany(): String {
-        return firebaseRemoteConfig.getString(ABOUT_COMPANY_URL)
+    override fun getAboutCompany(): Observable<String> {
+        return Observable.just(firebaseRemoteConfig.getString(ABOUT_COMPANY_URL))
     }
 
 }

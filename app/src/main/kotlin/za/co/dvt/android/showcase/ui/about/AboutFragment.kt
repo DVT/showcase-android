@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
@@ -20,7 +21,7 @@ class AboutFragment : LifecycleFragment() {
 
 
     lateinit var aboutViewModel: AboutViewModel
-
+    private lateinit var companyInformationTextView: TextView
 
     fun openTwitter(twitterUserName: String) {
 
@@ -43,10 +44,10 @@ class AboutFragment : LifecycleFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_about, container, false)
 
-        val twitterButton = view.findViewById<Button>(R.id.buttonTwitter)
-        val facebookButton = view.findViewById<Button>(R.id.buttonFacebook)
-        val websiteButton = view.findViewById<Button>(R.id.buttonWebsite)
-
+        val twitterButton = view.findViewById<Button>(R.id.button_twitter)
+        val facebookButton = view.findViewById<Button>(R.id.button_facebook)
+        val websiteButton = view.findViewById<Button>(R.id.button_website)
+        companyInformationTextView = view.findViewById<TextView>(R.id.text_view_about_company)
         twitterButton.setOnClickListener { aboutViewModel.openTwitter() }
         facebookButton.setOnClickListener { aboutViewModel.openFacebook() }
         websiteButton.setOnClickListener { aboutViewModel.openWebsite() }
@@ -74,6 +75,9 @@ class AboutFragment : LifecycleFragment() {
                 openTwitter(twitterName)
             }
         })
+        aboutViewModel.aboutCompany.subscribe { about ->
+            companyInformationTextView.text = about
+        } //todo unsubscribe
     }
 
     companion object {
