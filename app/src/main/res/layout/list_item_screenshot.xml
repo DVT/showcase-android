@@ -7,11 +7,16 @@
         <variable
             name="screenshotUrl"
             type="String" />
+
+        <variable
+            name="screenshotNavigator"
+            type="za.co.dvt.android.showcase.ui.viewapp.screenshots.ScreenshotNavigator" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{ () -> screenshotNavigator.onScreenshotClicked(screenshotUrl)}"
         android:orientation="vertical">
 
         <ImageView

@@ -13,11 +13,16 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import timber.log.Timber
 import za.co.dvt.android.showcase.R
 import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.databinding.FragmentAppDetailBinding
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
 import za.co.dvt.android.showcase.model.AppModel
+import za.co.dvt.android.showcase.ui.viewapp.screenshots.ScreenshotActivity
+import za.co.dvt.android.showcase.ui.viewapp.screenshots.ScreenshotAdapter
+import za.co.dvt.android.showcase.ui.viewapp.screenshots.ScreenshotFragment
+import za.co.dvt.android.showcase.ui.viewapp.screenshots.ScreenshotNavigator
 
 
 /**
@@ -70,7 +75,7 @@ class ViewAppFragment : LifecycleFragment(), AppDetailNavigator {
 
     private fun setupScreenshotRecyclerView() {
         screenshotRecyclerView = viewBinding.recyclerViewAppScreenshots
-        screenshotAdapter = ScreenshotAdapter(ArrayList())
+        screenshotAdapter = ScreenshotAdapter(ArrayList(), screenshotNavigator)
     }
 
     private fun setupToolbar(view: FragmentAppDetailBinding) {
@@ -92,6 +97,18 @@ class ViewAppFragment : LifecycleFragment(), AppDetailNavigator {
         return super.onOptionsItemSelected(item)
     }
 
+    private val screenshotNavigator: ScreenshotNavigator = object : ScreenshotNavigator {
+        override fun onScreenshotClicked(screenshotUrl: String) {
+            Timber.d("onScreenshotClicked: $screenshotUrl")
+
+            ScreenshotActivity.startActivity(screenshotUrl, context)
+
+           /* val screenshotFragment = ScreenshotFragment.newInstance(screenshotUrl)
+            fragmentManager.beginTransaction().replace(R.id.screenshot_fragment, screenshotFragment).commit()*/
+        }
+
+    }
+
     private fun setupViewModel() {
         viewAppViewModel = ViewModelProviders
                 .of(this, ShowcaseFactory(activity.application as ShowcaseApplication))
@@ -101,7 +118,7 @@ class ViewAppFragment : LifecycleFragment(), AppDetailNavigator {
             viewAppViewModel.loadApp(selectedApp).subscribe { item ->
                 viewBinding.appModel = item
                 if (item.screenshots != null) {
-                    screenshotAdapter = ScreenshotAdapter(item.screenshots!!)
+                    screenshotAdapter = ScreenshotAdapter(item.screenshots!!, screenshotNavigator)
                     screenshotRecyclerView.adapter = screenshotAdapter
                 } else {
                     screenshotRecyclerView.visibility = View.GONE

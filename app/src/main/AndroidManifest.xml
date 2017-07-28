@@ -29,7 +29,9 @@
         <activity
             android:name=".ui.viewapp.ViewAppActivity"
             android:theme="@style/AppTheme" />
-
+        <activity
+            android:name=".ui.viewapp.screenshots.ScreenshotActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

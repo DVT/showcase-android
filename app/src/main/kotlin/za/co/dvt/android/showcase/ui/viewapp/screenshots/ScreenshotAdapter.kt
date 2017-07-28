@@ -1,9 +1,8 @@
-package za.co.dvt.android.showcase.ui.viewapp
+package za.co.dvt.android.showcase.ui.viewapp.screenshots
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import timber.log.Timber
 import za.co.dvt.android.showcase.databinding.ListItemScreenshotBinding
 
@@ -11,8 +10,7 @@ import za.co.dvt.android.showcase.databinding.ListItemScreenshotBinding
  * @author rebeccafranks
  * @since 2017/07/19.
  */
-class ScreenshotAdapter(val screenshots: List<String>) : RecyclerView.Adapter<ScreenshotViewHolder>() {
-
+class ScreenshotAdapter(val screenshots: List<String>, val screenshotNavigator: ScreenshotNavigator) : RecyclerView.Adapter<ScreenshotViewHolder>() {
 
     override fun getItemCount(): Int {
         return screenshots.size
@@ -20,7 +18,7 @@ class ScreenshotAdapter(val screenshots: List<String>) : RecyclerView.Adapter<Sc
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ScreenshotViewHolder {
         val view = ListItemScreenshotBinding.inflate(LayoutInflater.from(parent?.context))
-        val viewHolder = ScreenshotViewHolder(view.root, view)
+        val viewHolder = ScreenshotViewHolder(view.root, view, screenshotNavigator)
         return viewHolder
 
     }
@@ -30,6 +28,5 @@ class ScreenshotAdapter(val screenshots: List<String>) : RecyclerView.Adapter<Sc
         Timber.d("Screenshot Url: $item at $position ")
         holder?.bind(item)
     }
-
 
 }

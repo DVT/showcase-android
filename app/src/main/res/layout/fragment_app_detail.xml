@@ -162,7 +162,6 @@
                     android:layout_marginTop="4dp"
                     android:text="@{appModel.technologyUsed}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -209,7 +208,6 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="0dp"
-                    android:fontFamily="sans-serif"
                     android:text="@{appModel.client}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textColor="@color/caption_text_color"
@@ -237,5 +235,12 @@
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
+
+        <FrameLayout
+            android:id="@+id/screenshot_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
     </android.support.constraint.ConstraintLayout>
 </layout>
