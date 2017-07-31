@@ -15,13 +15,13 @@ class ScreenshotFragment : LifecycleFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = FragmentScreenshotBinding.inflate(inflater)
-        val screenshotUrl = activity.intent.extras.getString(SCREENSHOT_URL)
+        val screenshotUrl = arguments.getString(SCREENSHOT_URL)
         view.screenshotUrl = screenshotUrl
         return view.root
     }
 
     companion object {
-        public val SCREENSHOT_URL = "screenshot_url"
+        private val SCREENSHOT_URL = "screenshot_url"
 
         fun newInstance(screenshotUrl: String): ScreenshotFragment {
             val bundle = Bundle()
@@ -30,6 +30,7 @@ class ScreenshotFragment : LifecycleFragment() {
             screenshotFragment.arguments = bundle
             return screenshotFragment
         }
+
 
     }
 }

@@ -29,7 +29,10 @@ class ViewAppViewModel : ViewModel(), ShowcaseComponent.Injectable {
         Timber.d("loadApp called with $appId")
         return appRepository.getAppById(appId)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread()).flatMap { newApp: AppModel ->
+            app = newApp
+            Flowable.just(app)
+        }
 
     }
 

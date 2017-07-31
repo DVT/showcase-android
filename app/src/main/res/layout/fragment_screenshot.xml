@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/screenshot_background_dark"
         android:orientation="vertical">
 
         <ImageView

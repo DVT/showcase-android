@@ -21,7 +21,6 @@ import za.co.dvt.android.showcase.injection.ShowcaseFactory
 import za.co.dvt.android.showcase.model.AppModel
 import za.co.dvt.android.showcase.ui.viewapp.screenshots.ScreenshotActivity
 import za.co.dvt.android.showcase.ui.viewapp.screenshots.ScreenshotAdapter
-import za.co.dvt.android.showcase.ui.viewapp.screenshots.ScreenshotFragment
 import za.co.dvt.android.showcase.ui.viewapp.screenshots.ScreenshotNavigator
 
 
@@ -48,8 +47,8 @@ class ViewAppFragment : LifecycleFragment(), AppDetailNavigator {
         setHasOptionsMenu(true)
         setupViewModel()
         setupToolbar(viewBinding)
-        setupScreenshotRecyclerView()
         setupAppStoreObservable()
+        setupScreenshotRecyclerView()
         return viewBinding.root
     }
 
@@ -100,11 +99,13 @@ class ViewAppFragment : LifecycleFragment(), AppDetailNavigator {
     private val screenshotNavigator: ScreenshotNavigator = object : ScreenshotNavigator {
         override fun onScreenshotClicked(screenshotUrl: String) {
             Timber.d("onScreenshotClicked: $screenshotUrl")
+            viewAppViewModel.app?.let { app ->
+                val position = app.screenshots?.indexOf(screenshotUrl)
+                position?.let {
+                    ScreenshotActivity.startActivity(ArrayList(app.screenshots), position, context)
+                }
+            }
 
-            ScreenshotActivity.startActivity(screenshotUrl, context)
-
-           /* val screenshotFragment = ScreenshotFragment.newInstance(screenshotUrl)
-            fragmentManager.beginTransaction().replace(R.id.screenshot_fragment, screenshotFragment).commit()*/
         }
 
     }
