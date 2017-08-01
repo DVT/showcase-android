@@ -1,6 +1,5 @@
 package za.co.dvt.android.showcase.ui.login
 
-import android.app.Activity
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean

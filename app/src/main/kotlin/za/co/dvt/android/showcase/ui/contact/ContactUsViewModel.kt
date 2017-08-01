@@ -2,7 +2,6 @@ package za.co.dvt.android.showcase.ui.contact
 
 import android.arch.lifecycle.ViewModel
 import io.reactivex.Flowable
-import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import za.co.dvt.android.showcase.injection.ShowcaseComponent

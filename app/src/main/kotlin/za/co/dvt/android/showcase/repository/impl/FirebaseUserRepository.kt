@@ -1,6 +1,5 @@
 package za.co.dvt.android.showcase.repository.impl
 
-import android.app.Activity
 import com.google.firebase.auth.FirebaseAuth
 import timber.log.Timber
 import za.co.dvt.android.showcase.repository.UserRepository
@@ -16,7 +15,7 @@ class FirebaseUserRepository(val firebaseAuth: FirebaseAuth) : UserRepository {
 
     override fun login(email: String, password: String, loginCallback: UserRepository.LoginCallback) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener( { task ->
+                .addOnCompleteListener({ task ->
                     if (task.isSuccessful) {
                         Timber.d("signInWithEmail:success")
                         val user = firebaseAuth.currentUser

@@ -49,7 +49,7 @@ class ContactUsFragment : LifecycleFragment(), OfficeItemNavigator {
 
         contactUsViewModel.openEmail.observe(this, Observer<Office> { office ->
             office?.let {
-                office.emailAddress?.let{
+                office.emailAddress?.let {
                     composeEmail(it, getString(R.string.email_subject_default))
                 }
             }
