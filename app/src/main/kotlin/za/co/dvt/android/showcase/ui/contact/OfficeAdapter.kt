@@ -1,16 +1,10 @@
 package za.co.dvt.android.showcase.ui.contact
 
-import android.databinding.BindingAdapter
 import android.support.v7.widget.RecyclerView
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import com.bumptech.glide.Glide
-import com.google.firebase.storage.FirebaseStorage
 import za.co.dvt.android.showcase.databinding.ListItemOfficeBinding
 import za.co.dvt.android.showcase.model.Office
-import za.co.dvt.android.showcase.utils.FirebaseImageLoader
 
 /**
  * @author rebeccafranks

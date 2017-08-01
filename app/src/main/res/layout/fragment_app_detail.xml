@@ -6,8 +6,14 @@
     <data>
 
         <variable
-            name="appViewModel"
-            type="za.co.dvt.android.showcase.ui.viewapp.ViewAppViewModel" />
+            name="appModel"
+            type="za.co.dvt.android.showcase.model.AppModel" />
+
+        <variable
+            name="appDetailNavigator"
+            type="za.co.dvt.android.showcase.ui.viewapp.AppDetailNavigator" />
+
+        <import type="android.view.View" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -30,66 +36,77 @@
                 android:background="?attr/colorPrimary"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
-                app:title="@{appViewModel.app.name}"
+                app:title="@{appModel.name}"
                 app:titleTextColor="@color/white" />
         </android.support.design.widget.AppBarLayout>
 
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
+            app:visibleGone="@{appModel != null}">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ProgressBar
+                    android:id="@+id/progress_bar_loading"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{appModel == null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageView
-                    android:id="@+id/imageViewAppIcon"
+                    android:id="@+id/image_view_app_icon"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    app:imageUrl="@{appModel.iconUrl}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/ic_launcher" />
+                    tools:src="@mipmap/ic_launcher" />
 
                 <TextView
-                    android:id="@+id/textViewAppName"
+                    android:id="@+id/textview_app_name"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="36dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{appViewModel.app.name}"
+                    android:text="@{appModel.name}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/imageViewAppIcon"
+                    app:layout_constraintStart_toEndOf="@+id/image_view_app_icon"
                     app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteY="12dp"
                     tools:text="DVT Showcase App" />
 
                 <TextView
-                    android:id="@+id/textViewShortDescription"
+                    android:id="@+id/text_view_short_description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:text="@{appViewModel.app.shortDescription}"
+                    android:layout_marginTop="0dp"
+                    android:text="@{appModel.shortDescription}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/imageViewAppIcon"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewClientName"
+                    app:layout_constraintStart_toEndOf="@+id/image_view_app_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_cient_name"
                     tools:text="Short description of the app " />
 
                 <TextView
-                    android:id="@+id/textViewFunctionalityHeading"
+                    android:id="@+id/text_view_functionality_heading"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -101,75 +118,129 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/viewPagerAppScreenShots" />
+                    app:layout_constraintTop_toBottomOf="@+id/recycler_view_app_screenshots" />
 
                 <TextView
-                    android:id="@+id/textViewFunctionality"
+                    android:id="@+id/text_view_functionality"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:text="@{appModel.functionality}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewFunctionalityHeading"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_functionality_heading"
                     tools:layout_editor_absoluteY="335dp"
                     tools:text="This is the functionality description " />
 
                 <TextView
-                    android:id="@+id/textViewTechnologiesHeading"
+                    android:id="@+id/text_view_technologies_heading"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/heading_technologies"
+                    android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewFunctionality" />
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_functionality" />
 
                 <TextView
-                    android:id="@+id/textViewTechnologies"
+                    android:id="@+id/text_view_technologies"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@{appModel.technologyUsed}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewTechnologiesHeading"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_technologies_heading"
                     tools:text="- Android \n- iOS " />
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewPagerAppScreenShots"
-                    android:layout_width="0dp"
-                    android:layout_height="200dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageViewAppIcon">
-
-                </android.support.v4.view.ViewPager>
-
                 <TextView
-                    android:id="@+id/textViewClientName"
+                    android:id="@+id/text_view_screenshots_heading"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/screenshots_heading"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageViewAppIcon"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewAppName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_download"
+                    app:visibleGone="@{appModel.screenshots != null}" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view_app_screenshots"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="8dp"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_screenshots_heading"
+                    app:visibleGone="@{appModel.screenshots != null}"
+                    tools:listitem="@layout/list_item_screenshot">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/text_view_cient_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="0dp"
+                    android:text="@{appModel.client}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/caption_text_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/image_view_app_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_app_name"
                     tools:text="Client" />
+
+                <Button
+                    android:id="@+id/button_download"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:onClick="@{() -> appDetailNavigator.installApp(appModel)}"
+                    android:text="@string/install_app"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_short_description"
+                    app:visibleGone="@{appModel.androidPackageName != null }"
+                    tools:layout_editor_absoluteX="288dp" />
+
+
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
+
+        <FrameLayout
+            android:id="@+id/screenshot_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
     </android.support.constraint.ConstraintLayout>
 </layout>

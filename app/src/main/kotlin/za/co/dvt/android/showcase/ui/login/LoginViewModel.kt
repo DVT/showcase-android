@@ -1,6 +1,5 @@
 package za.co.dvt.android.showcase.ui.login
 
-import android.app.Activity
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
@@ -32,9 +31,9 @@ class LoginViewModel : ViewModel(), ShowcaseComponent.Injectable {
     @Inject
     lateinit var trackingRepository: TrackingRepository
 
-    fun login(activity: Activity) {
+    fun login() {
         loading.set(true)
-        userRepository.login(emailAddress.get(), password.get(), activity, object : UserRepository.LoginCallback {
+        userRepository.login(emailAddress.get(), password.get(), object : UserRepository.LoginCallback {
 
             override fun onLoggedInSuccess(user: FirebaseUser) {
                 loggedIn.value = true

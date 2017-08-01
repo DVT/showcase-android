@@ -60,13 +60,13 @@ class LoginFragment : LifecycleFragment() {
         viewDataBinding.viewModel = loginViewModel
         buttonSignIn = view.findViewById(R.id.button_login)
         buttonSignIn.setOnClickListener {
-            loginViewModel.login(activity)
+            loginViewModel.login()
             closeKeyboard()
         }
         editTextPassword = view.findViewById(R.id.edit_text_password)
         editTextPassword.setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
-                loginViewModel.login(activity)
+                loginViewModel.login()
                 return@OnEditorActionListener false
             }
             false

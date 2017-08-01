@@ -4,16 +4,11 @@ import android.content.Context
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import dagger.Module
 import dagger.Provides
-import za.co.dvt.android.showcase.repository.AppRepository
-import za.co.dvt.android.showcase.repository.OfficesRepository
-import za.co.dvt.android.showcase.repository.TrackingRepository
-import za.co.dvt.android.showcase.repository.UserRepository
-import za.co.dvt.android.showcase.repository.impl.FirebaseAppRepository
-import za.co.dvt.android.showcase.repository.impl.FirebaseOfficesRepository
-import za.co.dvt.android.showcase.repository.impl.FirebaseTrackingRepository
-import za.co.dvt.android.showcase.repository.impl.FirebaseUserRepository
+import za.co.dvt.android.showcase.repository.*
+import za.co.dvt.android.showcase.repository.impl.*
 import javax.inject.Singleton
 
 /**
@@ -39,4 +34,9 @@ class ShowcaseModule {
     @Provides
     @Singleton
     fun providesTrackingRepository(context: Context): TrackingRepository = FirebaseTrackingRepository(FirebaseAnalytics.getInstance(context))
+
+
+    @Provides
+    @Singleton
+    fun providesRemoteConfigRepository(): RemoteConfigurationRepository = FirebaseRemoteConfigRepository(FirebaseRemoteConfig.getInstance())
 }

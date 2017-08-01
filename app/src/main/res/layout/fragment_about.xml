@@ -43,7 +43,7 @@
                 android:orientation="vertical">
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/dvt_logo_card"
+                    android:id="@+id/logo_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -59,7 +59,7 @@
 
 
                         <ImageView
-                            android:id="@+id/imageView"
+                            android:id="@+id/image_view_logo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:srcCompat="@drawable/company_logo" />
@@ -67,7 +67,7 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/about_dvt_card"
+                    android:id="@+id/about_company_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -84,7 +84,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/textViewName"
+                            android:id="@+id/text_view_about"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
@@ -102,7 +102,7 @@
                             tools:text="ABOUT " />
 
                         <View
-                            android:id="@+id/view"
+                            android:id="@+id/view_divider"
                             android:layout_width="0dp"
                             android:layout_height="1dp"
                             android:layout_marginEnd="8dp"
@@ -110,11 +110,11 @@
                             android:background="@color/divider_gray"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_about" />
 
 
                         <Button
-                            android:id="@+id/buttonWebsite"
+                            android:id="@+id/button_website"
                             style="@style/Widget.AppCompat.Button.Borderless"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -123,13 +123,13 @@
                             android:drawableTop="@drawable/ic_planet_land"
                             android:text="@string/website"
                             android:textColor="@color/button_blue"
-                            app:layout_constraintEnd_toStartOf="@+id/buttonTwitter"
+                            app:layout_constraintEnd_toStartOf="@+id/button_twitter"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textViewAboutInfo" />
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_about_company" />
 
                         <Button
-                            android:id="@+id/buttonTwitter"
+                            android:id="@+id/button_twitter"
                             style="@style/Widget.AppCompat.Button.Borderless"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -138,13 +138,13 @@
                             android:drawableTop="@drawable/ic_twitter_black_shape"
                             android:text="@string/twitter"
                             android:textColor="@color/button_blue"
-                            app:layout_constraintEnd_toStartOf="@+id/buttonFacebook"
+                            app:layout_constraintEnd_toStartOf="@+id/button_facebook"
                             app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/buttonWebsite"
-                            app:layout_constraintTop_toBottomOf="@+id/textViewAboutInfo" />
+                            app:layout_constraintStart_toEndOf="@+id/button_website"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_about_company" />
 
                         <Button
-                            android:id="@+id/buttonFacebook"
+                            android:id="@+id/button_facebook"
                             style="@style/Widget.AppCompat.Button.Borderless"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -155,20 +155,19 @@
                             android:textColor="@color/button_blue"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/buttonTwitter"
-                            app:layout_constraintTop_toBottomOf="@+id/textViewAboutInfo" />
+                            app:layout_constraintStart_toEndOf="@+id/button_twitter"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_about_company" />
 
                         <TextView
-                            android:id="@+id/textViewAboutInfo"
+                            android:id="@+id/text_view_about_company"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
-                            android:text="@string/about_company"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/view" />
+                            app:layout_constraintTop_toTopOf="@+id/view_divider" />
 
                     </android.support.constraint.ConstraintLayout>
                 </android.support.v7.widget.CardView>
