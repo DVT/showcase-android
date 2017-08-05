@@ -30,4 +30,5 @@
     <string name="install_app">Install</string>
     <string name="screenshots_heading">Screenshots</string>
     <string name="retry">Retry</string>
+    <string name="device_not_supported">This device is not supported. Install Google Play services.</string>
 </resources>
