@@ -18,8 +18,8 @@ You can also view some information about the company that has developed the apps
 # Screenshots
 
 Here are some screenshots from the application. 
-![Login](art/login.png)
-![App Listing](art/list_apps.png)
+![Login](art/login.png =100x)
+![App Listing](art/list_apps.png =100x)
 ![App Detail](art/app_detail.jpg)
 ![Contact Us](art/contact_us_offices.png)
 ![About Us](art/about_company.png)
