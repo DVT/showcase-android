@@ -18,11 +18,12 @@ You can also view some information about the company that has developed the apps
 # Screenshots
 
 Here are some screenshots from the application. 
-![Login](art/login.png =100x)
-![App Listing](art/list_apps.png =100x)
-![App Detail](art/app_detail.jpg)
-![Contact Us](art/contact_us_offices.png)
-![About Us](art/about_company.png)
+<img src="art/login.jpg" alt="Login" style="width: 100px;"/>
+<img src="art/list_apps.jpg" alt="App Listing" style="width: 100px;"/>
+<img src="art/app_detail.jpg" alt="App Detail" style="width: 100px;"/>
+<img src="art/contact_us_offices.jpg" alt="Contact us" style="width: 100px;"/>
+<img src="art/about_company.jpg" alt="About Company" style="width: 100px;"/>
+
 
 
 
