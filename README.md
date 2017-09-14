@@ -20,10 +20,10 @@ You can also view some information about the company that has developed the apps
 Here are some screenshots from the application. 
 
 <img src="art/login.png" alt="Login" style="width: 100px;"/>
-<img src="art/list_apps.png" alt="App Listing" style="width: 100px;"/>
-<img src="art/app_detail.jpg" alt="App Detail" style="width: 100px;"/>
-<img src="art/contact_us_offices.png" alt="Contact us" style="width: 100px;"/>
-<img src="art/about_company.png" alt="About Company" style="width: 100px;"/>
+<img src="art/app_list.png" alt="App Listing" style="width: 100px;"/>
+<img src="art/app_detail_dstv.jpg" alt="App Detail" style="width: 100px;"/>
+<img src="art/contact_us.png" alt="Contact us" style="width: 100px;"/>
+<img src="art/about.png" alt="About Company" style="width: 100px;"/>
 
 
 
