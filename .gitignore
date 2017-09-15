@@ -40,3 +40,5 @@ captures/
 *.jks
 
 app/src/debug/res/values/google_maps_api.xml
+
+release-keystore.properties

@@ -1,7 +1,9 @@
 package za.co.dvt.android.showcase.model
 
+import android.support.annotation.Keep
 
 
+@Keep
 data class AppModel(var id: String? = null,
                     var name: String? = null,
                     var shortDescription: String? = null,
