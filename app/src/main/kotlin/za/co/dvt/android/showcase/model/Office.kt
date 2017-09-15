@@ -1,6 +1,8 @@
 package za.co.dvt.android.showcase.model
 
+import android.support.annotation.Keep
 
+@Keep
 data class Office(val name: String? = null,
                   val telephone: String? = null,
                   val emailAddress: String? = null,
