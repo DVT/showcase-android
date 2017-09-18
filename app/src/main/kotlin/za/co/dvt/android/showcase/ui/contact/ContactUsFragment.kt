@@ -7,6 +7,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -41,13 +42,13 @@ class ContactUsFragment : LifecycleFragment(), OfficeItemNavigator {
             }
         } //todo unsubscribe
 
-        contactUsViewModel.openCall.observe(this, Observer<Office> { office ->
+        contactUsViewModel.openCall.observe(this, Observer { office ->
             office?.let {
                 startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + office.telephone)))
             }
         })
 
-        contactUsViewModel.openEmail.observe(this, Observer<Office> { office ->
+        contactUsViewModel.openEmail.observe(this, Observer { office ->
             office?.let {
                 office.emailAddress?.let {
                     composeEmail(it, getString(R.string.email_subject_default))
@@ -55,7 +56,7 @@ class ContactUsFragment : LifecycleFragment(), OfficeItemNavigator {
             }
         })
 
-        contactUsViewModel.openNavigate.observe(this, Observer<Office> { office ->
+        contactUsViewModel.openNavigate.observe(this, Observer { office ->
             office?.let {
                 startActivity(Intent(Intent.ACTION_VIEW,
                         Uri.parse("https://www.google.com/maps/dir/?api=1&destination_place_id="
@@ -66,12 +67,17 @@ class ContactUsFragment : LifecycleFragment(), OfficeItemNavigator {
     }
 
     fun composeEmail(addresses: String, subject: String) {
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.type = "*/*"
-        intent.putExtra(Intent.EXTRA_EMAIL, addresses)
+        val intent = Intent(Intent.ACTION_SENDTO)
+        intent.type = "text/plain"
+        intent.data = Uri.parse("mailto:" + addresses)
+        intent.putExtra(Intent.EXTRA_EMAIL, arrayListOf(addresses))
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
         if (intent.resolveActivity(activity.packageManager) != null) {
             startActivity(intent)
+        } else {
+            view?.let { v ->
+                Snackbar.make(v, getString(R.string.no_email_clients), Snackbar.LENGTH_LONG).show()
+            }
         }
     }
 
