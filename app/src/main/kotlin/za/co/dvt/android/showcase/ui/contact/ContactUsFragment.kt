@@ -41,13 +41,13 @@ class ContactUsFragment : LifecycleFragment(), OfficeItemNavigator {
             }
         } //todo unsubscribe
 
-        contactUsViewModel.openCall.observe(this, Observer<Office> { office ->
+        contactUsViewModel.openCall.observe(this, Observer { office ->
             office?.let {
                 startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + office.telephone)))
             }
         })
 
-        contactUsViewModel.openEmail.observe(this, Observer<Office> { office ->
+        contactUsViewModel.openEmail.observe(this, Observer { office ->
             office?.let {
                 office.emailAddress?.let {
                     composeEmail(it, getString(R.string.email_subject_default))
@@ -55,7 +55,7 @@ class ContactUsFragment : LifecycleFragment(), OfficeItemNavigator {
             }
         })
 
-        contactUsViewModel.openNavigate.observe(this, Observer<Office> { office ->
+        contactUsViewModel.openNavigate.observe(this, Observer { office ->
             office?.let {
                 startActivity(Intent(Intent.ACTION_VIEW,
                         Uri.parse("https://www.google.com/maps/dir/?api=1&destination_place_id="
@@ -66,9 +66,9 @@ class ContactUsFragment : LifecycleFragment(), OfficeItemNavigator {
     }
 
     fun composeEmail(addresses: String, subject: String) {
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.type = "*/*"
-        intent.putExtra(Intent.EXTRA_EMAIL, addresses)
+        val intent = Intent(Intent.ACTION_SENDTO)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_EMAIL, arrayListOf(addresses))
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
         if (intent.resolveActivity(activity.packageManager) != null) {
             startActivity(intent)
