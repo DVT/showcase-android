@@ -1,9 +1,9 @@
 ext {
-    googlePlayServices = "11.2.2"
-    supportLibraryVersion = "26.0.2"
+    googlePlayServices = "11.6.0"
+    supportLibraryVersion = "26.1.0"
     mockitoVersion = '1.10.19'
     junitVersion = '4.12'
     hamcrestVersion = '1.3'
     dagger_version = "2.8"
-    arch_version = '1.0.0-alpha9'
+    arch_version = '1.0.0'
 }

@@ -1,12 +1,12 @@
 package za.co.dvt.android.showcase.ui.about
 
 
-import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +17,7 @@ import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
 
 
-class AboutFragment : LifecycleFragment() {
+class AboutFragment : Fragment() {
 
 
     lateinit var aboutViewModel: AboutViewModel

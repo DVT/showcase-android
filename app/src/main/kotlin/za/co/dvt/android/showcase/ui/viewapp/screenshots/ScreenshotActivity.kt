@@ -1,16 +1,16 @@
 package za.co.dvt.android.showcase.ui.viewapp.screenshots
 
-import android.arch.lifecycle.LifecycleActivity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.ViewPager
+import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import android.view.WindowManager
 import za.co.dvt.android.showcase.R
 
 
-class ScreenshotActivity : LifecycleActivity() {
+class ScreenshotActivity : AppCompatActivity() {
 
     private var selectedIndex: Int = -1
     private lateinit var screenshotUrls: ArrayList<String>

@@ -1,13 +1,13 @@
 package za.co.dvt.android.showcase.ui.contact
 
 
-import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -18,7 +18,7 @@ import za.co.dvt.android.showcase.ShowcaseApplication
 import za.co.dvt.android.showcase.injection.ShowcaseFactory
 import za.co.dvt.android.showcase.model.Office
 
-class ContactUsFragment : LifecycleFragment(), OfficeItemNavigator {
+class ContactUsFragment : Fragment(), OfficeItemNavigator {
 
 
     lateinit var contactUsViewModel: ContactUsViewModel

@@ -1,12 +1,12 @@
 package za.co.dvt.android.showcase.ui.viewapp
 
-import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -29,7 +29,7 @@ import za.co.dvt.android.showcase.ui.viewapp.screenshots.ScreenshotNavigator
  * *
  * @since 2017/04/13
  */
-class ViewAppFragment : LifecycleFragment(), AppDetailNavigator {
+class ViewAppFragment : Fragment(), AppDetailNavigator {
 
 
     lateinit var viewAppViewModel: ViewAppViewModel
