@@ -15,7 +15,7 @@ class ScreenshotFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = FragmentScreenshotBinding.inflate(inflater)
-        val screenshotUrl = arguments.getString(SCREENSHOT_URL)
+        val screenshotUrl = arguments?.getString(SCREENSHOT_URL)
         view.screenshotUrl = screenshotUrl
         return view.root
     }
@@ -30,7 +30,6 @@ class ScreenshotFragment : Fragment() {
             screenshotFragment.arguments = bundle
             return screenshotFragment
         }
-
 
     }
 }

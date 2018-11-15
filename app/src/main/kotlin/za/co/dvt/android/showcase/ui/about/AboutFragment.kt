@@ -58,7 +58,7 @@ class AboutFragment : Fragment() {
 
     private fun setupViewModel() {
         aboutViewModel = ViewModelProviders.of(this,
-                ShowcaseFactory(activity.application as ShowcaseApplication))
+                ShowcaseFactory(activity?.application as ShowcaseApplication))
                 .get(AboutViewModel::class.java)
         aboutViewModel.openWebsite.observe(this, Observer<String> { websiteUrl: String? ->
             websiteUrl?.let {

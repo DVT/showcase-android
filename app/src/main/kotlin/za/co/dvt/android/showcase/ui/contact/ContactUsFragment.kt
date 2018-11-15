@@ -34,7 +34,7 @@ class ContactUsFragment : Fragment(), OfficeItemNavigator {
 
     private fun setupViewModel() {
         contactUsViewModel = ViewModelProviders.of(this,
-                ShowcaseFactory(activity.application as ShowcaseApplication))
+                ShowcaseFactory(activity?.application as ShowcaseApplication))
                 .get(ContactUsViewModel::class.java)
         contactUsViewModel.getOffices().subscribe { offices: List<Office>? ->
             offices?.let {
@@ -72,7 +72,7 @@ class ContactUsFragment : Fragment(), OfficeItemNavigator {
         intent.data = Uri.parse("mailto:" + addresses)
         intent.putExtra(Intent.EXTRA_EMAIL, arrayListOf(addresses))
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-        if (intent.resolveActivity(activity.packageManager) != null) {
+        if (intent.resolveActivity(activity?.packageManager) != null) {
             startActivity(intent)
         } else {
             view?.let { v ->

@@ -41,8 +41,8 @@ class LoginFragment : Fragment() {
 
         loginViewModel.loggedIn.observe(this, Observer<Boolean> {
             if (it != null && it) {
-                activity.setResult(Activity.RESULT_OK)
-                activity.finish()
+                activity?.setResult(Activity.RESULT_OK)
+                activity?.finish()
 
             }
         })
@@ -52,7 +52,7 @@ class LoginFragment : Fragment() {
 
     private fun setupViewBinding(view: View) {
         loginViewModel = ViewModelProviders
-                .of(this, ShowcaseFactory(activity.application as ShowcaseApplication))
+                .of(this, ShowcaseFactory(activity?.application as ShowcaseApplication))
                 .get(LoginViewModel::class.java)
         loginViewModel.initializeScreen()
 
@@ -75,7 +75,7 @@ class LoginFragment : Fragment() {
     }
 
     fun closeKeyboard() {
-        val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(editTextPassword.windowToken, InputMethodManager.RESULT_UNCHANGED_SHOWN)
     }
 

@@ -16,14 +16,14 @@ class ScreenshotAdapter(val screenshots: List<String>, val screenshotNavigator: 
         return screenshots.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ScreenshotViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScreenshotViewHolder {
         val view = ListItemScreenshotBinding.inflate(LayoutInflater.from(parent?.context))
         val viewHolder = ScreenshotViewHolder(view.root, view, screenshotNavigator)
         return viewHolder
 
     }
 
-    override fun onBindViewHolder(holder: ScreenshotViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ScreenshotViewHolder, position: Int) {
         val item = screenshots[position]
         Timber.d("Screenshot Url: $item at $position ")
         holder?.bind(item)

@@ -43,7 +43,7 @@ class ViewAppFragment : Fragment(), AppDetailNavigator {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewBinding = FragmentAppDetailBinding.inflate(inflater)
-        selectedApp = activity.intent.getStringExtra(ViewAppActivity.ARG_APP_ID)
+        selectedApp = activity?.intent?.getStringExtra(ViewAppActivity.ARG_APP_ID)
         setHasOptionsMenu(true)
         setupViewModel()
         setupToolbar(viewBinding)
@@ -91,7 +91,7 @@ class ViewAppFragment : Fragment(), AppDetailNavigator {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            activity.finish()
+            activity?.finish()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -102,7 +102,7 @@ class ViewAppFragment : Fragment(), AppDetailNavigator {
             viewAppViewModel.app?.let { app ->
                 val position = app.screenshots?.indexOf(screenshotUrl)
                 position?.let {
-                    ScreenshotActivity.startActivity(ArrayList(app.screenshots), position, context)
+                    context?.let { it1 -> ScreenshotActivity.startActivity(ArrayList(app.screenshots), position, it1) }
                 }
             }
 
@@ -112,7 +112,7 @@ class ViewAppFragment : Fragment(), AppDetailNavigator {
 
     private fun setupViewModel() {
         viewAppViewModel = ViewModelProviders
-                .of(this, ShowcaseFactory(activity.application as ShowcaseApplication))
+                .of(this, ShowcaseFactory(activity?.application as ShowcaseApplication))
                 .get(ViewAppViewModel::class.java)
         viewBinding.appDetailNavigator = this
         selectedApp?.let { selectedApp ->

@@ -13,22 +13,24 @@ import za.co.dvt.android.showcase.repository.UserRepository
 
 class FirebaseUserRepository(val firebaseAuth: FirebaseAuth) : UserRepository {
 
-    override fun login(email: String, password: String, loginCallback: UserRepository.LoginCallback) {
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener({ task ->
-                    if (task.isSuccessful) {
-                        Timber.d("signInWithEmail:success")
-                        val user = firebaseAuth.currentUser
-                        if (user != null) {
-                            loginCallback.onLoggedInSuccess(user)
-                        }
-                    } else {
-                        task.exception?.let {
-                            Timber.d("signInWithEmail:failure", it)
-                            loginCallback.onLoginFailed(it)
-                        }
-                    }
-                })
+    override fun login(email: String?, password: String?, loginCallback: UserRepository.LoginCallback) {
+        if (email != null && password != null) {
+                firebaseAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener({ task ->
+                            if (task.isSuccessful) {
+                                Timber.d("signInWithEmail:success")
+                                val user = firebaseAuth.currentUser
+                                if (user != null) {
+                                    loginCallback.onLoggedInSuccess(user)
+                                }
+                            } else {
+                                task.exception?.let {
+                                    Timber.d("signInWithEmail:failure", it)
+                                    loginCallback.onLoginFailed(it)
+                                }
+                            }
+                        })
+            }
+        }
     }
 
-}

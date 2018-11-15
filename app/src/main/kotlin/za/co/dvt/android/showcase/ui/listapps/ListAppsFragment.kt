@@ -64,7 +64,7 @@ class ListAppsFragment : Fragment(), AppItemNavigator {
 
     private fun setupViewModel() {
         listAppsViewModel = ViewModelProviders.of(this,
-                ShowcaseFactory(activity.application as ShowcaseApplication))
+                ShowcaseFactory(activity?.application as ShowcaseApplication))
                 .get(ListAppsViewModel::class.java)
 
     }

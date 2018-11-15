@@ -30,7 +30,7 @@ public class RxFirebaseUser {
       return Maybe.create(new MaybeOnSubscribe<GetTokenResult>() {
          @Override
          public void subscribe(MaybeEmitter<GetTokenResult> emitter) throws Exception {
-            RxHandler.assignOnTask(emitter, firebaseUser.getToken(forceRefresh));
+            RxHandler.assignOnTask(emitter, firebaseUser.getIdToken(forceRefresh));
          }
       });
    }

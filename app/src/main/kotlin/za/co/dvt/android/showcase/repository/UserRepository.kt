@@ -9,7 +9,7 @@ import java.lang.Exception
  * @since 2017/04/13
  */
 interface UserRepository {
-    fun login(email: String, password: String, loginCallback: LoginCallback)
+    fun login(email: String?, password: String?, loginCallback: LoginCallback)
 
     interface LoginCallback {
         fun onLoggedInSuccess(user: FirebaseUser)
